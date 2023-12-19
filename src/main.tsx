@@ -9,7 +9,7 @@ import {
 } from "react-router-dom";
 import Layout from "./Layout.tsx";
 import Home from "./components/Home.tsx";
-import About from "./components/about.tsx";
+import About from "./components/About.tsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
