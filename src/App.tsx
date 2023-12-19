@@ -119,7 +119,7 @@ function App() {
                   <a>Settings</a>
                 </li>
                 <li>
-                  <a>Logout</a>
+                  <a>Login</a>
                 </li>
               </ul>
             </div>
