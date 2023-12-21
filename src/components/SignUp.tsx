@@ -62,7 +62,7 @@ export default function SignUp() {
             const modal = document.getElementById(
               "my_modal_2"
             ) as HTMLDialogElement;
-            modal.close();
+            modal.showModal();
           }
         }}
       >
