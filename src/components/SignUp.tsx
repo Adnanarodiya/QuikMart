@@ -13,7 +13,7 @@ export default function SignUp() {
       setUser(user.data.user);
     });
 
-    supabase.auth.onAuthStateChange((event, session) => {
+    supabase.auth.onAuthStateChange((_event, session) => {
       setUser(session?.user ?? null);
     });
   });
@@ -40,7 +40,8 @@ export default function SignUp() {
         success: "Email Sent 😊",
         error: "Error Sending Email 😢",
       });
-      document.getElementById("my_modal_2").close();
+
+      document.getElementById("my_modal_2")?.close();
     } catch (error) {
       console.log(error);
       toast.error("Invalid Email 😢");
@@ -57,7 +58,7 @@ export default function SignUp() {
           if (user) {
             logout();
           } else {
-            document.getElementById("my_modal_2").showModal();
+            document.getElementById("my_modal_2")?.showModal();
           }
         }}
       >

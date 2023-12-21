@@ -17,17 +17,33 @@ export default function Header() {
               <Link to="/"> Home</Link>
             </li>
             <li>
-              <details>
+              {/* <details>
                 <summary>Categoreys</summary>
                 <ul className="p-2 w-40">
                   <li>
-                    <a>Submenu 1</a>
+                    <Link to="/electronics">Electronics</Link>
                   </li>
                   <li>
-                    <a>Submenu 2</a>
+                    <Link to="/cloths">Cloths</Link>
                   </li>
                 </ul>
-              </details>
+              </details> */}
+              <div className="dropdown dropdown-bottom dropdown-hover">
+                <div tabIndex={0} role="button" className="">
+                  Category
+                </div>
+                <ul
+                  tabIndex={0}
+                  className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52"
+                >
+                  <li>
+                    <Link to="/electronics">Electronics</Link>
+                  </li>
+                  <li>
+                    <Link to="/cloths">Cloths</Link>
+                  </li>
+                </ul>
+              </div>
             </li>
             <li>
               <Link to="/about">About Us</Link>
