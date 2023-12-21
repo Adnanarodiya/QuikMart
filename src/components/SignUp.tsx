@@ -41,7 +41,8 @@ export default function SignUp() {
         error: "Error Sending Email 😢",
       });
 
-      document.getElementById("my_modal_2")?.close();
+      const modal = document.getElementById("my_modal_2") as HTMLDialogElement;
+      modal.close();
     } catch (error) {
       console.log(error);
       toast.error("Invalid Email 😢");
@@ -58,7 +59,10 @@ export default function SignUp() {
           if (user) {
             logout();
           } else {
-            document.getElementById("my_modal_2")?.showModal();
+            const modal = document.getElementById(
+              "my_modal_2"
+            ) as HTMLDialogElement;
+            modal.close();
           }
         }}
       >
