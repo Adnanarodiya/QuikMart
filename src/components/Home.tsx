@@ -91,38 +91,38 @@ function Home() {
         <div className="p-3 bg-white shadow-xl m-4 rounded-lg">
           <div>
             <h3 className="text-2xl text-black my-5 font-bold">
-              Best of Electronics
+              Beauty, Food, Toys & More
             </h3>
           </div>
           <div className="flex gap-4">
             <Asdf
-              img="img/camera.webp"
-              discrption="cameras"
+              img="img/almond.webp"
+              discrption="Prettynutty Dry Fruits Combo"
+              tittle="Upto 75% Off"
+            />
+            <Asdf
+              img="img/bike.webp"
+              discrption=" Mobile Tracking App 27.5 T Road Cycle "
+              tittle="Upto 40% Off"
+            />
+            <Asdf
+              img="img/faceWash.webp"
+              discrption="DENVER Acne Clear Facewash"
+              tittle="From ₹269"
+            />
+            <Asdf
+              img="img/food.webp"
+              discrption="Food Spreads"
+              tittle="Upto 75% Off"
+            />
+            <Asdf
+              img="img/instrument.webp"
+              discrption="intern INT-38C-BK Acoustic Guitar"
               tittle="Shop Now"
             />
             <Asdf
-              img="img/projector.webp"
-              discrption=" projectors"
-              tittle="From ₹9,999"
-            />
-            <Asdf
-              img="img/mouse.webp"
-              discrption="wirewless keyboard & mouse"
-              tittle="From ₹169"
-            />
-            <Asdf
-              img="img/adapter.webp"
-              discrption="USB Gadgets"
-              tittle="From ₹179"
-            />
-            <Asdf
-              img="img/powerBank.webp"
-              discrption="Premium PowerBank"
-              tittle="Shop Now"
-            />
-            <Asdf
-              img="img/printer.webp"
-              discrption="printers"
+              img="img/drone.webp"
+              discrption="alis E88 Drone WiFi Camera"
               tittle="From ₹3,999"
             />
           </div>

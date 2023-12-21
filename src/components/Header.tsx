@@ -1,11 +1,14 @@
 import { Link } from "react-router-dom";
+import SignUp from "./SignUp";
 
 export default function Header() {
   return (
     <div className="navbar bg-base-300 backdrop-saturate-200 backdrop-blur-2xl bg-opacity-80   sticky inset-0 z-10  shadow-lg shadow-black/40 mb-6">
       <div className="container">
         <div className="navbar-start">
-          <a className="btn btn-ghost text-xl">QuikMart</a>
+          <Link className="btn btn-ghost text-xl" to="/">
+            QuikMart
+          </Link>
         </div>
 
         <div className="navbar-center hidden md:flex">
@@ -98,7 +101,10 @@ export default function Header() {
                 <a>Settings</a>
               </li>
               <li>
-                <a>Login</a>
+                {/* <Link to="/about"> Login</Link> */}
+                <a>
+                  <SignUp />
+                </a>
               </li>
             </ul>
           </div>
