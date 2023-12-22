@@ -73,10 +73,7 @@ export default function SignUp() {
         className="modal backdrop-saturate-200 backdrop-blur-xl bg-opacity-80"
       >
         <div className="modal-box">
-          <h3 className="font-bold text-lg">
-            {user && <span>Welcome {user.user_metadata.name}, </span>}
-            Create your Account
-          </h3>
+          <h3 className="font-bold text-lg">Create your Account</h3>
           <p className="py-4">to continue to QuikMart</p>
           <button
             className="btn w-full mb-4"
