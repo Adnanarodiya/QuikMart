@@ -13,6 +13,7 @@ import About from "./components/About.tsx";
 import Cloths from "./components/Cloths.tsx";
 import Electronics from "./components/Electronics.tsx";
 import Profile from "./components/Profile.tsx";
+import ProductPage from "./components/ProductPage.tsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -22,6 +23,7 @@ const router = createBrowserRouter(
       <Route path="/cloths" element={<Cloths />} />
       <Route path="/electronics" element={<Electronics />} />
       <Route path="/profile" element={<Profile />} />
+      <Route path="/electronics/product-page" element={<ProductPage />} />
     </Route>
   )
 );

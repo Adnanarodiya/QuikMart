@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { supabase } from "./lib/helper/supabaseClient";
 import toast, { Toaster } from "react-hot-toast";
 import { z } from "zod";
-import { User } from "@supabase/supabase-js";
+import { Provider, User } from "@supabase/supabase-js";
 
 export default function SignUp() {
   const [user, setUser] = useState<User | null>(null);
@@ -18,8 +18,11 @@ export default function SignUp() {
     });
   });
 
-  const login = async (provider) => {
-    await supabase.auth.signInWithOAuth({ provider });
+  const login = async (provider: Provider) => {
+    await supabase.auth.signInWithOAuth({
+      provider,
+      options: { redirectTo: "http://localhost:5173/" },
+    });
   };
 
   const logout = async () => {
@@ -76,14 +79,14 @@ export default function SignUp() {
           <h3 className="font-bold text-lg">Create your Account</h3>
           <p className="py-4">to continue to QuikMart</p>
           <button
-            className="btn w-full mb-4"
+            className="btn bg-neutral hover:bg-neutral/80 text-primary w-full mb-4"
             onClick={user ? logout : () => login("github")}
           >
             <img src="img/github.png" alt="" />
             SignUp with GitHub
           </button>
           <button
-            className="btn w-full mb-6"
+            className="btn w-full mb-6 bg-neutral hover:bg-neutral/80 text-primary"
             onClick={user ? logout : () => login("google")}
           >
             <img src="img/google.png" alt="" />

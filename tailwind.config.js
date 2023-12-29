@@ -14,6 +14,28 @@ export default {
   },
   plugins: [require("daisyui")],
   daisyui: {
-    themes: ["light", "dark", "business"],
+    themes: [
+      {
+        mytheme: {
+          primary: "#ffffff",
+
+          secondary: "#ffffff",
+
+          accent: "#ffffff",
+
+          neutral: "#000000",
+
+          "base-100": "#ffffff",
+
+          info: "#ffffff",
+
+          success: "#ffffff",
+
+          warning: "#ffffff",
+
+          error: "#ffffff",
+        },
+      },
+    ],
   },
 };

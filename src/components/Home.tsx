@@ -1,134 +1,116 @@
-import useEmblaCarousel from "embla-carousel-react";
-import Autoplay from "embla-carousel-autoplay";
-
-import { useCallback } from "react";
 import Asdf from "./asdf";
 
-const autoplayOptions = {
-  delay: 4000,
-};
-
-function Home() {
-  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true }, [
-    Autoplay(autoplayOptions),
-  ]);
-
-  const scrollPrev = useCallback(() => {
-    if (emblaApi) emblaApi.scrollPrev();
-  }, [emblaApi]);
-
-  const scrollNext = useCallback(() => {
-    if (emblaApi) emblaApi.scrollNext();
-  }, [emblaApi]);
+export default function Home() {
   return (
-    <div>
-      <div className="embla relative mb-6 p-3">
-        <div className="embla__viewport" ref={emblaRef}>
-          <div className="embla__container">
-            <div className="embla__slide">
-              <img src="img/ad.jpg" alt="" />
-            </div>
-            <div className="embla__slide">
-              <img src="img/ad 2.jpg" alt="" />
-            </div>
-            <div className="embla__slide">
-              <img src="img/ad 3.webp" alt="" />
-            </div>
-            <div className="embla__slide">
-              <img src="img/ad 4.webp" alt="" />
-            </div>
-          </div>
-        </div>
-        <div className="   absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-          <button className="embla__prev btn btn-circle" onClick={scrollPrev}>
-            ❮
-          </button>
-          <button className="embla__next btn btn-circle" onClick={scrollNext}>
-            ❯
-          </button>
+    <>
+      <div className="container">
+        <div className="grid justify-items-center grid-cols-2 md:grid-cols-3 lg:grid-cols-4 mt-12 gap-4">
+          <Asdf
+            img="img/shirt.webp"
+            title="asdsada ads acassda awfd s"
+            mrp={123}
+            link="/electronics"
+          />
+          <Asdf
+            img="img/T-Shirt.webp"
+            title="asdsada ads acassda awfd s"
+            mrp={123}
+            link="/electronics"
+          />
+          <Asdf
+            img="img/Jeans.webp"
+            title="asdsada ads acassda awfd s"
+            mrp={123}
+            link="/electronics"
+          />
+          <Asdf
+            img="img/DenimJacket.webp"
+            title="asdsada ads acassda awfd s"
+            mrp={123}
+            link="/electronics"
+          />
+
+          <Asdf
+            img="img/chain.webp"
+            title="asdsada ads acassda awfd s"
+            mrp={123}
+            link="/electronics"
+          />
+          <Asdf
+            img="img/Kada.webp"
+            title="asdsada ads acassda awfd s"
+            mrp={123}
+            link="/electronics"
+          />
+          <Asdf
+            img="img/Locket.webp"
+            title="asdsada ads acassda awfd s"
+            mrp={123}
+            link="/electronics"
+          />
+          <Asdf
+            img="img/Ring.webp"
+            title="asdsada ads acassda awfd s"
+            mrp={123}
+            link="/electronics"
+          />
+          <Asdf
+            img="img/Beanie.webp"
+            title="asdsada ads acassda awfd s"
+            mrp={123}
+            link="/electronics"
+          />
+
+          <Asdf
+            img="img/Saree.webp"
+            title="asdsada ads acassda awfd s"
+            mrp={123}
+            link="/electronics"
+          />
+          <Asdf
+            img="img/MulticolorT-Shirt.webp"
+            title="asdsada ads acassda awfd s"
+            mrp={123}
+            link="/electronics"
+          />
+          <Asdf
+            img="img/Saree.webp"
+            title="asdsada ads acassda awfd s"
+            mrp={123}
+            link="/electronics"
+          />
+          <Asdf
+            img="img/ASUS.webp"
+            title="asdsada ads acassda awfd s"
+            mrp={123}
+            link="/electronics"
+          />
+          <Asdf
+            img="img/Cpu.webp"
+            title="asdsada ads acassda awfd s"
+            mrp={123}
+            link="/electronics"
+          />
+          <Asdf
+            img="img/MacBook.webp"
+            title="asdsada ads acassda awfd s"
+            mrp={123}
+            link="/electronics"
+          />
+          <Asdf
+            img="img/Monitor.webp"
+            title="asdsada ads acassda awfd s"
+            mrp={123}
+            link="/electronics"
+          />
+          <Asdf
+            img="img/RTX.webp"
+            title="asdsada ads acassda awfd s"
+            mrp={123}
+            link="/electronics"
+          />
         </div>
       </div>
-      <div>
-        <div className="p-3 bg-white shadow-xl m-4 rounded-lg">
-          <div>
-            <h3 className="text-2xl text-black my-5 font-bold">
-              Best of Electronics
-            </h3>
-          </div>
-          <div className="flex gap-4">
-            <Asdf
-              img="img/camera.webp"
-              discrption="cameras"
-              tittle="Shop Now"
-            />
-            <Asdf
-              img="img/projector.webp"
-              discrption=" projectors"
-              tittle="From ₹9,999"
-            />
-            <Asdf
-              img="img/mouse.webp"
-              discrption="wirewless keyboard & mouse"
-              tittle="From ₹169"
-            />
-            <Asdf
-              img="img/adapter.webp"
-              discrption="USB Gadgets"
-              tittle="From ₹179"
-            />
-            <Asdf
-              img="img/powerBank.webp"
-              discrption="Premium PowerBank"
-              tittle="Shop Now"
-            />
-            <Asdf
-              img="img/printer.webp"
-              discrption="printers"
-              tittle="From ₹3,999"
-            />
-          </div>
-        </div>
-        <div className="p-3 bg-white shadow-xl m-4 rounded-lg">
-          <div>
-            <h3 className="text-2xl text-black my-5 font-bold">
-              Beauty, Food, Toys & More
-            </h3>
-          </div>
-          <div className="flex gap-4">
-            <Asdf
-              img="img/almond.webp"
-              discrption="Prettynutty Dry Fruits Combo"
-              tittle="Upto 75% Off"
-            />
-            <Asdf
-              img="img/bike.webp"
-              discrption=" Mobile Tracking App 27.5 T Road Cycle "
-              tittle="Upto 40% Off"
-            />
-            <Asdf
-              img="img/faceWash.webp"
-              discrption="DENVER Acne Clear Facewash"
-              tittle="From ₹269"
-            />
-            <Asdf
-              img="img/food.webp"
-              discrption="Food Spreads"
-              tittle="Upto 75% Off"
-            />
-            <Asdf
-              img="img/instrument.webp"
-              discrption="intern INT-38C-BK Acoustic Guitar"
-              tittle="Shop Now"
-            />
-            <Asdf
-              img="img/drone.webp"
-              discrption="alis E88 Drone WiFi Camera"
-              tittle="From ₹3,999"
-            />
-          </div>
-        </div>
-      </div>
-    </div>
+    </>
   );
 }
-export default Home;
