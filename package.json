@@ -13,6 +13,7 @@
     "@supabase/supabase-js": "^2.39.1",
     "embla-carousel-autoplay": "^8.0.0-rc15",
     "embla-carousel-react": "^8.0.0-rc15",
+    "nprogress": "^0.2.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hot-toast": "^2.4.1",
@@ -20,6 +21,7 @@
     "zod": "^3.22.4"
   },
   "devDependencies": {
+    "@types/nprogress": "^0.2.3",
     "@types/react": "^18.2.43",
     "@types/react-dom": "^18.2.17",
     "@typescript-eslint/eslint-plugin": "^6.14.0",

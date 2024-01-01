@@ -1,5 +1,5 @@
 import { useLoaderData } from "react-router-dom";
-import Asdf from "./asdf";
+import Asdf from "../asdf";
 
 interface Product {
   id: number;
@@ -9,7 +9,7 @@ interface Product {
   mrp: number;
 }
 
-export default function Home() {
+export default function MensClothing() {
   const products = useLoaderData() as Product[];
 
   return (
