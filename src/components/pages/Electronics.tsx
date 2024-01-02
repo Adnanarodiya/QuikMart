@@ -21,7 +21,7 @@ export default function Electronics() {
               key={product.id}
               title={product.title}
               mrp={product.mrp}
-              link="/id"
+              link={`/product/${product.id}`}
             />
           ))}
         </div>

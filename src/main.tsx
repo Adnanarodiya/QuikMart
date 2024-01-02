@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import {
+  Params,
   Route,
   RouterProvider,
   createBrowserRouter,
@@ -45,7 +46,7 @@ async function fetchJewelry() {
   return data;
 }
 // eslint-disable-next-line react-refresh/only-export-components
-async function WomenCloth() {
+async function fetchWomenCloth() {
   const { data, error } = await supabase
     .from("product")
     .select("id, mrp, title,category,img")
@@ -54,13 +55,27 @@ async function WomenCloth() {
   if (error) throw error;
   return data;
 }
-async function electronics() {
+async function fetchElectronics() {
   const { data, error } = await supabase
     .from("product")
     .select("id, mrp, title,category,img")
     .eq("category", "electronics");
 
   if (error) throw error;
+  return data;
+}
+async function fetchProduct({ params }: { params: Params<string> }) {
+  if (!params.productId) throw new Response("Not Found", { status: 404 });
+
+  const { data, error } = await supabase
+    .from("product")
+    .select("id, mrp, title,category,img")
+    .eq("id", +params.productId)
+    .single();
+
+  console.log(data);
+
+  if (error) throw new Response("Not Found", { status: 404 });
   return data;
 }
 
@@ -71,7 +86,11 @@ const router = createBrowserRouter(
       <Route path="/about" element={<About />} />
 
       <Route path="/profile" element={<Profile />} />
-      <Route path="/id" element={<ProductPage />} />
+      <Route
+        path="/product/:productId"
+        element={<ProductPage />}
+        loader={fetchProduct}
+      />
       <Route
         path="/mensclothing"
         element={<MensClothing />}
@@ -80,13 +99,13 @@ const router = createBrowserRouter(
       <Route
         path="/womensclothing"
         element={<WomensClothing />}
-        loader={WomenCloth}
+        loader={fetchWomenCloth}
       />
       <Route path="/jewelary" element={<Jewelry />} loader={fetchJewelry} />
       <Route
         path="/electronics"
         element={<Electronics />}
-        loader={electronics}
+        loader={fetchElectronics}
       />
     </Route>
   )
