@@ -1,5 +1,5 @@
 import { useLoaderData } from "react-router-dom";
-import Asdf from "../asdf";
+import ProductCard from "../productCard";
 
 interface Product {
   id: number;
@@ -18,7 +18,7 @@ export default function Electronics() {
       <div className="container">
         <div className="grid justify-items-center grid-cols-2 md:grid-cols-3 lg:grid-cols-4 mt-12 gap-4">
           {products.map((product) => (
-            <Asdf
+            <ProductCard
               img={product.img}
               key={product.id}
               title={product.title}

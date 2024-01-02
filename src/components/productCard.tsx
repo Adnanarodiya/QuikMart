@@ -7,12 +7,12 @@ interface Props {
   mrp: number;
 }
 
-export default function asdf({ link, img, mrp, title }: Props) {
+export default function productCard({ link, img, mrp, title }: Props) {
   return (
     <>
       <Link to={link}>
         <div className="w-72  p-4 ">
-          <div className=" hover:opacity-80  hover:duration-500 mb-3">
+          <div className=" hover:opacity-80  hover:duration-500 mb-3 duration-700">
             <img className="mx-auto h-60 object-contain" src={img} alt="" />
           </div>
           <div className="mb-4 text-center">
