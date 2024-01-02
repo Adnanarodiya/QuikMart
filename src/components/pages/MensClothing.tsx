@@ -21,7 +21,7 @@ export default function MensClothing() {
               key={product.id}
               title={product.title}
               mrp={product.mrp}
-              link="/electronics/product-page"
+              link="/id"
             />
           ))}
         </div>
