@@ -7,6 +7,7 @@ interface Product {
   // isnew: boolean;
   title: string;
   mrp: number;
+  img: string;
 }
 
 export default function MensClothing() {
@@ -18,7 +19,7 @@ export default function MensClothing() {
         <div className="grid justify-items-center grid-cols-2 md:grid-cols-3 lg:grid-cols-4 mt-12 gap-4">
           {products.map((product) => (
             <Asdf
-              img="img/shirt.webp"
+              img={product.img}
               key={product.id}
               title={product.title}
               mrp={product.mrp}
