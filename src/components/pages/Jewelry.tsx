@@ -3,8 +3,6 @@ import ProductCard from "../productCard";
 
 interface Product {
   id: number;
-  // created_at: Date;
-  // isnew: boolean;
   title: string;
   mrp: number;
   img: string;

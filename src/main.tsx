@@ -10,7 +10,6 @@ import {
 import Layout from "./Layout.tsx";
 import Home from "./components/Home.tsx";
 import About from "./components/About.tsx";
-import Cloths from "./components/Cloths.tsx";
 import Profile from "./components/Profile.tsx";
 import ProductPage from "./components/ProductPage.tsx";
 import MensClothing from "./components/pages/MensClothing.tsx";
@@ -45,6 +44,7 @@ async function fetchJewelry() {
   if (error) throw error;
   return data;
 }
+// eslint-disable-next-line react-refresh/only-export-components
 async function WomenCloth() {
   const { data, error } = await supabase
     .from("product")
@@ -69,7 +69,7 @@ const router = createBrowserRouter(
     <Route path="/" element={<Layout />}>
       <Route path="/" element={<Home />} loader={fetchAllProds} />
       <Route path="/about" element={<About />} />
-      <Route path="/cloths" element={<Cloths />} />
+
       <Route path="/profile" element={<Profile />} />
       <Route path="/electronics/product-page" element={<ProductPage />} />
       <Route
