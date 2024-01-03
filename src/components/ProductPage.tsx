@@ -26,9 +26,10 @@ export default function ProductPage() {
             <div className="mb-6 ">
               <input
                 type="number"
-                className="w-14 border mr-3"
+                className="w-12 border mr-3 text-center"
                 min="1"
                 max="20"
+                defaultValue={1}
               />
               <label htmlFor="quantity">Quantity</label>
             </div>
