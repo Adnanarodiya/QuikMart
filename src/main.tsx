@@ -73,8 +73,6 @@ async function fetchProduct({ params }: { params: Params<string> }) {
     .eq("id", +params.productId)
     .single();
 
-  console.log(data);
-
   if (error) throw new Response("Not Found", { status: 404 });
   return data;
 }
