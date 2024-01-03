@@ -18,6 +18,7 @@ import WomensClothing from "./components/pages/WomensClothing.tsx";
 import Jewelry from "./components/pages/Jewelry.tsx";
 import Electronics from "./components/pages/Electronics.tsx";
 import { supabase } from "./components/lib/helper/supabaseClient.ts";
+import NotFound from "./NotFound.tsx";
 
 async function fetchAllProds() {
   const { data, error } = await supabase
@@ -74,6 +75,7 @@ async function fetchProduct({ params }: { params: Params<string> }) {
     .single();
 
   if (error) throw new Response("Not Found", { status: 404 });
+
   return data;
 }
 
@@ -105,6 +107,7 @@ const router = createBrowserRouter(
         element={<Electronics />}
         loader={fetchElectronics}
       />
+      <Route path="*" element={<NotFound />} />
     </Route>
   )
 );
