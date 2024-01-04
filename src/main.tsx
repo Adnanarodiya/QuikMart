@@ -32,7 +32,7 @@ async function fetchMensClothing() {
   const { data, error } = await supabase
     .from("product")
     .select("id, mrp, title,category,img")
-    .eq("category", "MensClothing");
+    .eq("category", "Men's Clothing");
 
   if (error) throw error;
   return data;
@@ -51,7 +51,7 @@ async function fetchWomenCloth() {
   const { data, error } = await supabase
     .from("product")
     .select("id, mrp, title,category,img")
-    .eq("category", "WomenCloth");
+    .eq("category", "women's clothing");
 
   if (error) throw error;
   return data;

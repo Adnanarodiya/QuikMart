@@ -3,7 +3,7 @@ export default function About() {
     <div className="flex justify-center items-center gap-8 h-[80vh]">
       <div>
         <img
-          className="w-96 rounded-3xl hover:scale-95"
+          className="w-96 rounded-3xl hover:scale-95 hover:duration-500 duration-700"
           src="img/profile.jpg"
           alt=""
         />
