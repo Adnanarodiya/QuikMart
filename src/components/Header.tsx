@@ -1,15 +1,22 @@
 import { Link } from "react-router-dom";
 import SignUp from "./SignUp";
 import { useUser } from "./lib/helper/useUser";
+import { useState } from "react";
 
 export default function Header() {
   const user = useUser();
+  const [menuOpen, setMenuOpen] = useState(false);
 
   return (
     <div className="navbar bg-base-100 sticky inset-0 z-10 backdrop-blur-md bg-opacity-80 backdrop-saturate-200 shadow-lg shadow-black/60 ">
       <div className="navbar-start">
         <div className="dropdown">
-          <div tabIndex={0} role="button" className="btn btn-ghost btn-circle">
+          <div
+            tabIndex={0}
+            role="button"
+            className="btn btn-ghost btn-circle"
+            onClick={() => setMenuOpen(!menuOpen)}
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-5 w-5"
@@ -25,37 +32,40 @@ export default function Header() {
               />
             </svg>
           </div>
-          <ul
-            tabIndex={0}
-            className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
-          >
-            <li>
-              <Link to="/">Homepage</Link>
-            </li>
-            <li>
-              <Link to="/mensclothing">Men's Clothing</Link>
-            </li>
-            <li>
-              <Link to="/womensclothing">Wonmen's Clothing</Link>
-            </li>
-            <li>
-              <Link to="electronics">Electronic</Link>
-            </li>
-            <li>
-              <Link to="jewelary">Jewelary</Link>
-            </li>
-            <li>
-              <Link to="/about">About</Link>
-            </li>
-            <li>
-              <Link to="/profile">Profile</Link>
-            </li>
-            <li>
-              <a>
-                <SignUp />
-              </a>
-            </li>
-          </ul>
+          {menuOpen && (
+            <ul
+              tabIndex={0}
+              className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
+              onClick={() => setMenuOpen(false)}
+            >
+              <li>
+                <Link to="/">Homepage</Link>
+              </li>
+              <li>
+                <Link to="/mensclothing">Men's Clothing</Link>
+              </li>
+              <li>
+                <Link to="/womensclothing">Wonmen's Clothing</Link>
+              </li>
+              <li>
+                <Link to="electronics">Electronic</Link>
+              </li>
+              <li>
+                <Link to="jewelary">Jewelary</Link>
+              </li>
+              <li>
+                <Link to="/about">About</Link>
+              </li>
+              <li>
+                <Link to="/profile">Profile</Link>
+              </li>
+              <li>
+                <a>
+                  <SignUp />
+                </a>
+              </li>
+            </ul>
+          )}
         </div>
       </div>
       <div className="navbar-center">
