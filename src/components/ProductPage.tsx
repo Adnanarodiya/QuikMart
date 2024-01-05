@@ -135,7 +135,7 @@ export default function ProductPage() {
               {product.category}
             </span>{" "}
           </p>
-          <p className="text-sm">
+          <p className="text-sm md:text-base">
             discription :- Lorem ipsum, dolor sit amet consectetur adipisicing
             elit. Ipsum non porro placeat doloribus ea. Ducimus ex quod nulla
             dolorem magni fuga itaque, nesciunt amet blanditiis magnam ea dolor.
