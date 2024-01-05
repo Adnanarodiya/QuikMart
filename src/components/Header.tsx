@@ -1,10 +1,11 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import SignUp from "./SignUp";
 import { useUser } from "./lib/helper/useUser";
 import { useState } from "react";
 
 export default function Header() {
   const user = useUser();
+  const navigate = useNavigate();
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
@@ -55,9 +56,6 @@ export default function Header() {
               </li>
               <li>
                 <Link to="/about">About</Link>
-              </li>
-              <li>
-                <Link to="/profile">Profile</Link>
               </li>
             </ul>
           )}
@@ -134,7 +132,7 @@ export default function Header() {
             </ul>
           </div>
         ) : (
-          <a>
+          <a onClick={() => navigate("/")}>
             <SignUp />
           </a>
         )}
