@@ -90,6 +90,7 @@ const router = createBrowserRouter(
         path="/product/:productId"
         element={<ProductPage />}
         loader={fetchProduct}
+        errorElement={<NotFound />}
       />
       <Route
         path="/mensclothing"

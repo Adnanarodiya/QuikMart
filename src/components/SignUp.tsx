@@ -1,22 +1,13 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { supabase } from "./lib/helper/supabaseClient";
 import toast, { Toaster } from "react-hot-toast";
 import { z } from "zod";
-import { Provider, User } from "@supabase/supabase-js";
+import { Provider } from "@supabase/supabase-js";
+import { useUser } from "./lib/helper/useUser";
 
 export default function SignUp() {
-  const [user, setUser] = useState<User | null>(null);
+  const user = useUser();
   const [email, setEmail] = useState("");
-
-  useEffect(() => {
-    supabase.auth.getUser().then((user) => {
-      setUser(user.data.user);
-    });
-
-    supabase.auth.onAuthStateChange((_event, session) => {
-      setUser(session?.user ?? null);
-    });
-  });
 
   const login = async (provider: Provider) => {
     await supabase.auth.signInWithOAuth({

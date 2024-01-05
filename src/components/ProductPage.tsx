@@ -1,4 +1,5 @@
 import { useLoaderData } from "react-router-dom";
+import { useUser } from "./lib/helper/useUser";
 
 interface Product {
   id: number;
@@ -8,6 +9,7 @@ interface Product {
   category: string;
 }
 export default function ProductPage() {
+  const user = useUser();
   const product = useLoaderData() as Product;
   return (
     <>
@@ -35,7 +37,17 @@ export default function ProductPage() {
             </div>
             <div>
               <div className="flex flex-col">
-                <button className="btn w-48 mb-4 bg-black border-black hover:bg-black/80 text-primary rounded-none ">
+                <button
+                  className="btn w-48 mb-4 bg-black border-black hover:bg-black/80 text-primary rounded-none "
+                  onClick={() => {
+                    if (!user) {
+                      const modal = document.getElementById(
+                        "my_modal_2"
+                      ) as HTMLDialogElement;
+                      modal.showModal();
+                    }
+                  }}
+                >
                   Add to Cart
                 </button>
                 <button className="btn w-48 bg-primary border-black hover:text-black/70 hover:bg-primary hover:border-black  rounded-none ">

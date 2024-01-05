@@ -1,7 +1,10 @@
 import { Link } from "react-router-dom";
 import SignUp from "./SignUp";
+import { useUser } from "./lib/helper/useUser";
 
 export default function Header() {
+  const user = useUser();
+
   return (
     <div className="navbar bg-base-100 sticky inset-0 z-10 backdrop-blur-md bg-opacity-80 backdrop-saturate-200 shadow-lg shadow-black/60 ">
       <div className="navbar-start">
@@ -61,11 +64,17 @@ export default function Header() {
         </Link>
       </div>
       <div className="navbar-end">
-        <button className="btn btn-ghost btn-circle">
-          <Link to="sg">
-            <img src="/img/user.png" alt="sds" />
-          </Link>
-        </button>
+        {user ? (
+          <button className="btn btn-ghost btn-circle">
+            <Link to="sg">
+              <img src="/img/user.png" alt="sds" />
+            </Link>
+          </button>
+        ) : (
+          <a>
+            <SignUp />
+          </a>
+        )}
         <button className="btn btn-ghost btn-circle">
           <div className="indicator">
             <img src="/img/cart.png" alt="" />

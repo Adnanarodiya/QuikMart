@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { supabase } from "./lib/helper/supabaseClient";
-import { User } from "@supabase/supabase-js";
+import { useUser } from "./lib/helper/useUser";
 
 export default function Profile() {
-  const [user, setUser] = useState<User | null>(null);
+  const user = useUser();
   const [phone, setPhone] = useState<string>("");
   async function updatePhone() {
     try {
@@ -15,16 +15,6 @@ export default function Profile() {
       console.log(error);
     }
   }
-
-  useEffect(() => {
-    supabase.auth.getUser().then((user) => {
-      setUser(user.data.user);
-    });
-
-    supabase.auth.onAuthStateChange((_event, session) => {
-      setUser(session?.user ?? null);
-    });
-  });
 
   return (
     <>
