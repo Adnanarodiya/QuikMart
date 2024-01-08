@@ -62,16 +62,16 @@ export default function Profile() {
           </form>
         </div> */}
         <div className="w-3/5 mx-auto">
-          <div role="tablist" className="tabs tabs-bordered mt-5">
+          <div role="tablist" className="tabs tabs-bordered mt-5 ">
             <input
               type="radio"
               name="my_tabs_1"
               role="tab"
-              className="tab"
-              aria-label="User Info"
+              className="tab "
+              aria-label="User "
               checked
             />
-            <div role="tabpanel" className="tab-content p-10">
+            <div role="tabpanel" className="tab-content md:p-10">
               <form>
                 <label className="form-control w-full">
                   <div className="label">
@@ -83,7 +83,7 @@ export default function Profile() {
                     className="input input-bordered w-full "
                   />
                 </label>
-                <div className="flex gap-4">
+                <div className="flex gap-4 flex-col md:flex-row">
                   <label className="form-control w-full">
                     <div className="label">
                       <span className="label-text">First name</span>
@@ -125,7 +125,7 @@ export default function Profile() {
                     className="input input-bordered w-full "
                   />
                 </label>
-                <div className="flex gap-4">
+                <div className="flex gap-4 flex-col md:flex-row">
                   <label className="form-control w-full">
                     <div className="label">
                       <span className="label-text">Country</span>
@@ -167,10 +167,10 @@ export default function Profile() {
               name="my_tabs_1"
               role="tab"
               className="tab"
-              aria-label="Order History"
+              aria-label="History"
             />
             <div role="tabpanel" className="tab-content p-10">
-              asdddddddddddddddd
+              There is no history yet.
             </div>
           </div>
         </div>
