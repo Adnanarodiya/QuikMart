@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { supabase } from "./lib/helper/supabaseClient";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 import { z } from "zod";
 import { Provider } from "@supabase/supabase-js";
 import { useUser } from "./lib/helper/useUser";
@@ -107,7 +107,6 @@ export default function SignUp() {
             </button>
           </form>
         </div>
-        <Toaster />
 
         <form method="dialog" className="modal-backdrop">
           <button>close</button>

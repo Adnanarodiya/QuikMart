@@ -1,5 +1,7 @@
 import { useLoaderData } from "react-router-dom";
 import { useUser } from "./lib/helper/useUser";
+import { supabase } from "./lib/helper/supabaseClient";
+import toast from "react-hot-toast";
 
 interface Product {
   id: number;
@@ -11,6 +13,20 @@ interface Product {
 export default function ProductPage() {
   const user = useUser();
   const product = useLoaderData() as Product;
+  async function addToCart() {
+    if (!user) return;
+    const { data, error } = await supabase.from("cart").insert({
+      product_id: product.id,
+      user_id: user.id,
+    });
+    if (error) {
+      toast.error("something went wrong pls try again.");
+      return;
+    }
+    toast.success("Product added succesfully");
+    console.log(data);
+  }
+
   return (
     <>
       <div className="container">
@@ -47,6 +63,8 @@ export default function ProductPage() {
                         "my_modal_2"
                       ) as HTMLDialogElement;
                       modal.showModal();
+                    } else {
+                      addToCart();
                     }
                   }}
                 >
