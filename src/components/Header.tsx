@@ -182,19 +182,38 @@ export default function Header() {
               </div>
               <ul
                 tabIndex={0}
-                className="  text-base leading-9 w-full"
+                className="  text-base leading-9 w-full "
                 onClick={handleClicked}
               >
                 {cart.length > 0 ? (
                   <div>
                     {cart.map((item) => (
                       <div key={item.id}>
-                        <p>{item.product?.title}</p>
+                        <div className="flex gap-6 border-b-2 w-11/12 mx-auto ">
+                          <div>
+                            <img
+                              className="w-12 m-4 object-cover"
+                              src={item.product?.img}
+                              alt=""
+                            />
+                          </div>
+                          <div className="">
+                            <p className="font-bold mt-4 w-4/5">
+                              {item.product?.title}
+                            </p>
+                            <div className="flex gap-4">
+                              <p className="italic">
+                                Mrp:- ₹{item.product?.mrp}
+                              </p>
+                              <p>Quantity :- 5</p>
+                            </div>
+                          </div>
+                        </div>
                       </div>
                     ))}
                   </div>
                 ) : (
-                  <div>
+                  <div className="m-6">
                     <p>your cart is currently empty.</p>
                   </div>
                 )}
