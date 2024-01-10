@@ -20,6 +20,8 @@ export function CartPop({ isCart, cart, handleClicked }: Props) {
     };
   }, [isCart]);
 
+  const formatter = new Intl.NumberFormat("en-In");
+
   return createPortal(
     <div className="fixed top-0 right-0 h-screen w-full md:w-96 bg-white backdrop-blur-3xl border-2 z-10 overflow-auto">
       <div className="flex justify-end p-2 relative ">
@@ -70,13 +72,26 @@ export function CartPop({ isCart, cart, handleClicked }: Props) {
                       {item.product?.title}
                     </p>
                     <div className="flex gap-4">
-                      <p className="italic">Mrp:- ₹{item.product?.mrp}</p>
+                      <p className="italic">
+                        Mrp:- ₹ {formatter.format(item.product!.mrp!)}
+                      </p>
                       <p>Quantity :- {item.quantity}</p>
                     </div>
                   </div>
                 </div>
               </div>
             ))}
+            <div className="m-8">
+              sub total:- ₹{" "}
+              {formatter.format(
+                cart.reduce((acc, item) => {
+                  console.log({ acc });
+                  console.log({ mrp: item.product?.mrp });
+                  console.log({ q: item.quantity });
+                  return acc + item.product!.mrp! * item.quantity!;
+                }, 0)
+              )}
+            </div>
           </div>
         ) : (
           <div className="m-6">

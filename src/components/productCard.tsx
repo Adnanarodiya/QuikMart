@@ -7,7 +7,10 @@ interface Props {
   mrp: number;
 }
 
-export default function productCard({ link, img, mrp, title }: Props) {
+export default function ProductCard({ link, img, mrp, title }: Props) {
+  const formatter = new Intl.NumberFormat("en-IN", {
+    maximumSignificantDigits: 3,
+  });
   return (
     <>
       <Link to={link}>
@@ -30,7 +33,7 @@ export default function productCard({ link, img, mrp, title }: Props) {
           </div>
           <div className="mb-4 text-center">
             <h3 className="mb-3  truncate font-bold text-sm">{title}</h3>
-            <p className="mb-4 italic">₹ {mrp}</p>
+            <p className="mb-4 italic">₹ {formatter.format(mrp)}</p>
           </div>
         </div>
       </Link>

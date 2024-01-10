@@ -53,21 +53,21 @@ export interface Database {
           category: string | null
           id: number
           img: string | null
-          mrp: string | null
+          mrp: number | null
           title: string | null
         }
         Insert: {
           category?: string | null
           id?: number
           img?: string | null
-          mrp?: string | null
+          mrp?: number | null
           title?: string | null
         }
         Update: {
           category?: string | null
           id?: number
           img?: string | null
-          mrp?: string | null
+          mrp?: number | null
           title?: string | null
         }
         Relationships: []

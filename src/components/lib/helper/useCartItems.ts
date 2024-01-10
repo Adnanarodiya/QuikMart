@@ -7,7 +7,7 @@ export type Cart = {
   quantity: number | null;
   product: {
     title: string | null;
-    mrp: string | null;
+    mrp: number | null;
     img: string | null;
   } | null;
 };
