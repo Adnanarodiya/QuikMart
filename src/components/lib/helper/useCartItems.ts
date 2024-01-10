@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import { supabase } from "./supabaseClient";
 
-type Cart = {
+export type Cart = {
   id: number;
   user_id: string | null;
+  quantity: number | null;
   product: {
     title: string | null;
     mrp: string | null;
@@ -21,14 +22,15 @@ export function useCartItems(userId: string | undefined) {
         .from("cart")
         .select(
           `
-        id,
-        user_id,
-        product (
-          title,
-          mrp,
-          img
-        )
-      `
+            id,
+            user_id,
+            quantity,
+            product (
+              title,
+              mrp,
+              img
+            )
+        `
         )
         .eq("user_id", userId);
 

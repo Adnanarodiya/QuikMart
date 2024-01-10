@@ -14,18 +14,21 @@ export interface Database {
           created_at: string
           id: number
           product_id: number | null
+          quantity: number | null
           user_id: string | null
         }
         Insert: {
           created_at?: string
           id?: number
           product_id?: number | null
+          quantity?: number | null
           user_id?: string | null
         }
         Update: {
           created_at?: string
           id?: number
           product_id?: number | null
+          quantity?: number | null
           user_id?: string | null
         }
         Relationships: [

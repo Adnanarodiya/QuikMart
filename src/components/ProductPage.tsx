@@ -2,6 +2,7 @@ import { useLoaderData } from "react-router-dom";
 import { useUser } from "./lib/helper/useUser";
 import { supabase } from "./lib/helper/supabaseClient";
 import toast from "react-hot-toast";
+import { useState } from "react";
 
 interface Product {
   id: number;
@@ -13,12 +14,40 @@ interface Product {
 export default function ProductPage() {
   const user = useUser();
   const product = useLoaderData() as Product;
+  const [quantity, setQuantity] = useState(1);
   async function addToCart() {
     if (!user) return;
-    const { data, error } = await supabase.from("cart").insert({
-      product_id: product.id,
-      user_id: user.id,
-    });
+    const { data: cartProduct } = await supabase
+      .from("cart")
+      .select("*")
+      .eq("product_id", product.id)
+      .eq("user_id", user.id)
+      .single();
+    if (cartProduct) {
+      const { data, error } = await supabase
+        .from("cart")
+        .update({
+          quantity: quantity + (cartProduct?.quantity ?? 1),
+        })
+        .eq("product_id", product.id)
+        .eq("user_id", user.id);
+      if (error) {
+        toast.error("something went wrong pls try again.");
+        return;
+      }
+      toast.success("Product added succesfully");
+      console.log(data);
+      return;
+    }
+    const { data, error } = await supabase
+      .from("cart")
+      .insert({
+        product_id: product.id,
+        user_id: user.id,
+        quantity: quantity,
+      })
+      .eq("product_id", product.id)
+      .eq("user_id", user.id);
     if (error) {
       toast.error("something went wrong pls try again.");
       return;
@@ -47,6 +76,8 @@ export default function ProductPage() {
               <input
                 type="number"
                 className="w-12 border mr-3 text-center"
+                onChange={(e) => setQuantity(parseInt(e.target.value))}
+                value={quantity}
                 min="1"
                 max="20"
                 defaultValue={1}
