@@ -24,7 +24,10 @@ export function CartPop({ isCart, cart, handleClicked }: Props) {
 
   return createPortal(
     <div className="fixed top-0 right-0 h-screen w-full md:w-96 bg-white backdrop-blur-3xl border-2 z-10 overflow-auto">
-      <div className="flex justify-end p-2 relative ">
+      <div className="flex justify-between items-center p-2 relative ">
+        <div>
+          <h1 className="text-xl font-bold">Cart </h1>
+        </div>
         <div
           tabIndex={0}
           role="button"
@@ -60,8 +63,6 @@ export function CartPop({ isCart, cart, handleClicked }: Props) {
                   className="flex border-b-2 w-11/12 mx-auto text-center items-center
                   justify-center mb-4  "
                 >
-                  {/* gap-6 border-b-2 w-11/12 mx-auto text-center items-center
-                  justify-center mb-4 */}
                   <div>
                     <img
                       className="  object-cover"
