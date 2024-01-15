@@ -56,10 +56,15 @@ export function CartPop({ isCart, cart, handleClicked }: Props) {
           <div>
             {cart.map((item) => (
               <div key={item.id}>
-                <div className="flex gap-6 border-b-2 w-11/12 mx-auto ">
+                <div
+                  className="flex border-b-2 w-11/12 mx-auto text-center items-center
+                  justify-center mb-4  "
+                >
+                  {/* gap-6 border-b-2 w-11/12 mx-auto text-center items-center
+                  justify-center mb-4 */}
                   <div>
                     <img
-                      className="w-12 m-4 object-cover"
+                      className="  object-cover"
                       src={
                         item.product?.img ??
                         "https://nayemdevs.com/wp-content/uploads/2020/03/default-product-image.png"
@@ -67,8 +72,8 @@ export function CartPop({ isCart, cart, handleClicked }: Props) {
                       alt=""
                     />
                   </div>
-                  <div className="">
-                    <p className="font-bold mt-4 w-4/5">
+                  <div className="w-4/5 ml-4">
+                    <p className="font-bold  truncate mr-4">
                       {item.product?.title}
                     </p>
                     <div className="flex gap-4">
@@ -85,9 +90,9 @@ export function CartPop({ isCart, cart, handleClicked }: Props) {
               sub total:- ₹{" "}
               {formatter.format(
                 cart.reduce((acc, item) => {
-                  console.log({ acc });
-                  console.log({ mrp: item.product?.mrp });
-                  console.log({ q: item.quantity });
+                  // console.log({ acc });
+                  // console.log({ mrp: item.product?.mrp });
+                  // console.log({ q: item.quantity });
                   return acc + item.product!.mrp! * item.quantity!;
                 }, 0)
               )}
