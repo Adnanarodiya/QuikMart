@@ -91,9 +91,6 @@ export function CartPop({ isCart, cart, handleClicked }: Props) {
               sub total:- ₹{" "}
               {formatter.format(
                 cart.reduce((acc, item) => {
-                  // console.log({ acc });
-                  // console.log({ mrp: item.product?.mrp });
-                  // console.log({ q: item.quantity });
                   return acc + item.product!.mrp! * item.quantity!;
                 }, 0)
               )}
