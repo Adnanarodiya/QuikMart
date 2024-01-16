@@ -75,7 +75,8 @@ export default function ProductPage() {
             <div className="mb-6 ">
               <input
                 type="number"
-                className="w-12 border mr-3 text-center"
+                inputMode="numeric"
+                className="w-12 border mr-3 text-center [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                 onChange={(e) => setQuantity(parseInt(e.target.value))}
                 value={quantity}
                 min="1"

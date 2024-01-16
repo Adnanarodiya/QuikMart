@@ -3,180 +3,32 @@
 // import { useUser } from "./lib/helper/useUser";
 // import { NavLink } from "react-router-dom";
 
+import { useState } from "react";
 import { useUser } from "./lib/helper/useUser";
+
+const countries = {
+  India: ["Gujarat", "Maharashtra", "Rajasthan"],
+  USA: ["California", "Texas", "New York"],
+  // Add more countries and states as needed
+};
 
 export default function Profile() {
   const user = useUser();
-  // const user = useUser();
-  // const [phone, setPhone] = useState<string>("");
-  // async function updatePhone() {
-  //   try {
-  //     const { data, error } = await supabase.auth.updateUser({
-  //       phone,
-  //     });
-  //     console.log(data, error);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // }
+  const [country, setCountry] = useState("");
+  const [state, setState] = useState("");
+
+  const handleCountryChange = (event) => {
+    setCountry(event.target.value);
+    setState(""); // Reset the state selection when a new country is selected
+  };
+
+  const handleStateChange = (event) => {
+    setState(event.target.value);
+  };
 
   return (
     <>
       <div>
-        {/* <div className="flex flex-col justify-center items-center mb-5  ">
-          <div className="avatar">
-            <div className="w-24 rounded-full">
-              <img src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
-            </div>
-          </div>
-        </div> */}
-        {/* <div className="flex flex-col items-center">
-          <h3 className="mb-4">
-            Full Name :- {user?.user_metadata.full_name ?? ""}
-          </h3>
-          <h3 className="mb-6 border-b-2 pb-4">Email :- {user?.email ?? ""}</h3>
-        </div>
-        <div className="flex flex-col justify-center items-center">
-          <form
-            onSubmit={(e) => {
-              e.preventDefault();
-              updatePhone();
-              console.log(phone);
-            }}
-          >
-            <label className="form-control mb-4 w-full max-w-xs">
-              <div className="label">
-                <span className="label-text">
-                  Phone No :- {user?.phone ?? ""}
-                </span>
-              </div>
-              <input
-                type="text"
-                value={phone}
-                onChange={(e) => setPhone(e.target.value)}
-                placeholder="Type here"
-                className="focus:outline-none input input-bordered w-full max-w-xs"
-              />
-            </label>
-
-            <button className="btn w-full  max-w-xs mb-4 bg-success text-black hover:bg-success/80">
-              Submit
-            </button>
-          </form>
-        </div> */}
-        {/* <div className="w-3/5 mx-auto">
-          <div role="tablist" className="tabs tabs-bordered mt-5 ">
-            <input
-              type="radio"
-              name="my_tabs_1"
-              role="tab"
-              className="tab "
-              aria-label="User "
-              checked
-            />
-            <div role="tabpanel" className="tab-content md:p-10">
-              <form>
-                <label className="form-control w-full">
-                  <div className="label">
-                    <span className="label-text">Email</span>
-                  </div>
-                  <input
-                    type="text"
-                    placeholder="Type here"
-                    className="input input-bordered w-full "
-                  />
-                </label>
-                <div className="flex gap-4 flex-col md:flex-row">
-                  <label className="form-control w-full">
-                    <div className="label">
-                      <span className="label-text">First name</span>
-                    </div>
-                    <input
-                      type="text"
-                      placeholder="Type here"
-                      className="input input-bordered w-full "
-                    />
-                  </label>
-                  <label className="form-control w-full">
-                    <div className="label">
-                      <span className="label-text">Last name</span>
-                    </div>
-                    <input
-                      type="text"
-                      placeholder="Type here"
-                      className="input input-bordered w-full "
-                    />
-                  </label>
-                </div>
-                <label className="form-control">
-                  <div className="label">
-                    <span className="label-text">Address</span>
-                  </div>
-                  <textarea
-                    className="textarea textarea-bordered h-24"
-                    placeholder="Bio"
-                    aria-colindex={2}
-                  ></textarea>
-                </label>
-                <label className="form-control w-full">
-                  <div className="label">
-                    <span className="label-text">City</span>
-                  </div>
-                  <input
-                    type="text"
-                    placeholder="Type here"
-                    className="input input-bordered w-full "
-                  />
-                </label>
-                <div className="flex gap-4 flex-col md:flex-row">
-                  <label className="form-control w-full">
-                    <div className="label">
-                      <span className="label-text">Country</span>
-                    </div>
-                    <input
-                      type="text"
-                      placeholder="Type here"
-                      className="input input-bordered w-full "
-                    />
-                  </label>
-                  <label className="form-control w-full">
-                    <div className="label">
-                      <span className="label-text">Postal code</span>
-                    </div>
-                    <input
-                      type="text"
-                      placeholder="Type here"
-                      className="input input-bordered w-full "
-                    />
-                  </label>
-                </div>
-                <label className="form-control w-full">
-                  <div className="label">
-                    <span className="label-text">Phone number</span>
-                  </div>
-                  <input
-                    type="text"
-                    placeholder="Type here"
-                    className="input input-bordered w-full "
-                  />
-                </label>
-                <button className="mt-5 rounded-lg btn w-full md:w-48 mb-4 bg-black border-black hover:bg-black/80 text-primary  ">
-                  Update
-                </button>
-              </form>
-            </div>
-            <input
-              type="radio"
-              name="my_tabs_1"
-              role="tab"
-              className="tab"
-              aria-label="History"
-            />
-            <div role="tabpanel" className="tab-content p-10">
-              There is no history yet.
-            </div>
-          </div>
-        </div> */}
         <div role="tablist" className="tabs tabs-lifted w-4/5 mx-auto my-10">
           <input
             type="radio"
@@ -203,7 +55,7 @@ export default function Profile() {
                   type="text"
                   value={user?.user_metadata.email}
                   disabled
-                  className="disabled:bg-white disabled:text-black input input-bordered w-full "
+                  className="disabled:bg-white disabled:text-black input input-bordered  focus:outline-none w-full "
                 />
               </label>
               <div className="flex gap-4 flex-col md:flex-row">
@@ -214,7 +66,7 @@ export default function Profile() {
                   <input
                     type="text"
                     placeholder="Type here"
-                    className="input input-bordered w-full "
+                    className="input input-bordered  focus:outline-none w-full"
                   />
                 </label>
                 <label className="form-control w-full">
@@ -224,7 +76,7 @@ export default function Profile() {
                   <input
                     type="text"
                     placeholder="Type here"
-                    className="input input-bordered w-full "
+                    className="input input-bordered  focus:outline-none w-full "
                   />
                 </label>
               </div>
@@ -233,7 +85,7 @@ export default function Profile() {
                   <span className="label-text">Address</span>
                 </div>
                 <textarea
-                  className="textarea textarea-bordered h-24"
+                  className="textarea textarea-bordered h-24  focus:outline-none"
                   placeholder="Bio"
                   aria-colindex={2}
                 ></textarea>
@@ -245,7 +97,7 @@ export default function Profile() {
                 <input
                   type="text"
                   placeholder="Type here"
-                  className="input input-bordered w-full "
+                  className="input input-bordered  focus:outline-none w-full "
                 />
               </label>
               <div className="flex gap-4 flex-col md:flex-row">
@@ -253,21 +105,36 @@ export default function Profile() {
                   <div className="label">
                     <span className="label-text">Country</span>
                   </div>
-                  <input
-                    type="text"
-                    placeholder="Type here"
-                    className="input input-bordered w-full "
-                  />
+                  <select
+                    className="input input-bordered  focus:outline-none w-full"
+                    value={country}
+                    onChange={handleCountryChange}
+                  >
+                    <option value="">Select a country</option>
+                    {Object.keys(countries).map((country) => (
+                      <option key={country} value={country}>
+                        {country}
+                      </option>
+                    ))}
+                  </select>
                 </label>
                 <label className="form-control w-full">
                   <div className="label">
-                    <span className="label-text">Postal code</span>
+                    <span className="label-text">State</span>
                   </div>
-                  <input
-                    type="text"
-                    placeholder="Type here"
-                    className="input input-bordered w-full "
-                  />
+                  <select
+                    className="input input-bordered  focus:outline-none w-full"
+                    value={state}
+                    onChange={handleStateChange}
+                  >
+                    <option value="">Select a state</option>
+                    {country &&
+                      countries[country].map((state) => (
+                        <option key={state} value={state}>
+                          {state}
+                        </option>
+                      ))}
+                  </select>
                 </label>
               </div>
               <label className="form-control w-full">
@@ -275,9 +142,11 @@ export default function Profile() {
                   <span className="label-text">Phone number</span>
                 </div>
                 <input
-                  type="text"
+                  type="number"
+                  inputMode="numeric"
+                  pattern="/d*"
                   placeholder="Type here"
-                  className="input input-bordered w-full "
+                  className="input input-bordered  focus:outline-none w-full [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                 />
               </label>
               <button className="mt-5 rounded-lg btn w-full md:w-48 mb-4 bg-black border-black hover:bg-black/80 text-primary  ">
