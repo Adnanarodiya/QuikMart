@@ -111,7 +111,7 @@ export default function ProductPage() {
                       ) as HTMLDialogElement;
                       modal.showModal();
                     } else {
-                      addToCart();
+                      toast.success("Product Buy succesfully");
                     }
                   }}
                 >
