@@ -1,29 +1,38 @@
-// import { useState } from "react";
-// import { supabase } from "./lib/helper/supabaseClient";
-// import { useUser } from "./lib/helper/useUser";
-// import { NavLink } from "react-router-dom";
-
 import { useState } from "react";
 import { useUser } from "./lib/helper/useUser";
 
 const countries = {
-  India: ["Gujarat", "Maharashtra", "Rajasthan"],
-  USA: ["California", "Texas", "New York"],
-  // Add more countries and states as needed
+  India: {
+    Gujarat: ["Surat", "Ahmedabad", "Vadodara"],
+    Maharashtra: ["Mumbai", "Pune", "Nagpur"],
+    Rajasthan: ["Jaipur", "Jodhpur", "Udaipur"],
+  },
+  USA: {
+    California: ["Los Angeles", "San Francisco", "San Diego"],
+    Texas: ["Houston", "Austin", "Dallas"],
+    "New York": ["New York City", "Buffalo", "Rochester"],
+  },
 };
 
 export default function Profile() {
   const user = useUser();
   const [country, setCountry] = useState("");
   const [state, setState] = useState("");
+  const [city, setCity] = useState("");
 
   const handleCountryChange = (event) => {
     setCountry(event.target.value);
-    setState(""); // Reset the state selection when a new country is selected
+    setState("");
+    setCity("");
   };
 
   const handleStateChange = (event) => {
     setState(event.target.value);
+    setCity("");
+  };
+
+  const handleCityChange = (event) => {
+    setCity(event.target.value);
   };
 
   return (
@@ -90,16 +99,7 @@ export default function Profile() {
                   aria-colindex={2}
                 ></textarea>
               </label>
-              <label className="form-control w-full">
-                <div className="label">
-                  <span className="label-text">City</span>
-                </div>
-                <input
-                  type="text"
-                  placeholder="Type here"
-                  className="input input-bordered  focus:outline-none w-full "
-                />
-              </label>
+
               <div className="flex gap-4 flex-col md:flex-row">
                 <label className="form-control w-full">
                   <div className="label">
@@ -129,12 +129,42 @@ export default function Profile() {
                   >
                     <option value="">Select a state</option>
                     {country &&
-                      countries[country].map((state) => (
+                      Object.keys(countries[country]).map((state) => (
                         <option key={state} value={state}>
                           {state}
                         </option>
                       ))}
                   </select>
+                </label>
+              </div>
+              <div className="flex gap-4 flex-col md:flex-row">
+                <label className="form-control w-full">
+                  <div className="label">
+                    <span className="label-text">State</span>
+                  </div>
+                  <select
+                    className="input input-bordered  focus:outline-none w-full"
+                    value={city}
+                    onChange={handleCityChange}
+                  >
+                    <option value="">Select a city</option>
+                    {state &&
+                      countries[country][state].map((city) => (
+                        <option key={city} value={city}>
+                          {city}
+                        </option>
+                      ))}
+                  </select>
+                </label>
+                <label className="form-control w-full">
+                  <div className="label">
+                    <span className="label-text">Pincode</span>
+                  </div>
+                  <input
+                    type="text"
+                    placeholder="Type here"
+                    className="input input-bordered  focus:outline-none w-full "
+                  />
                 </label>
               </div>
               <label className="form-control w-full">
