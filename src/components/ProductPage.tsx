@@ -102,7 +102,19 @@ export default function ProductPage() {
                 >
                   Add to Cart
                 </button>
-                <button className="btn w-full md:w-48 bg-primary border-black hover:text-black/70 hover:bg-primary hover:border-black  rounded-none ">
+                <button
+                  className="btn w-full md:w-48 bg-primary border-black hover:text-black/70 hover:bg-primary hover:border-black  rounded-none "
+                  onClick={() => {
+                    if (!user) {
+                      const modal = document.getElementById(
+                        "my_modal_2"
+                      ) as HTMLDialogElement;
+                      modal.showModal();
+                    } else {
+                      addToCart();
+                    }
+                  }}
+                >
                   Buy it Now
                 </button>
               </div>
