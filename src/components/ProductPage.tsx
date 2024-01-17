@@ -55,6 +55,7 @@ export default function ProductPage() {
     toast.success("Product added succesfully");
     console.log(data);
   }
+  // const refresh = () => window.location.reload(false);
 
   return (
     <>
@@ -96,7 +97,10 @@ export default function ProductPage() {
                       ) as HTMLDialogElement;
                       modal.showModal();
                     } else {
-                      addToCart();
+                      {
+                        addToCart();
+                        // refresh;
+                      }
                     }
                   }}
                 >
@@ -116,6 +120,12 @@ export default function ProductPage() {
                   }}
                 >
                   Buy it Now
+                </button>
+                <button
+                  className="btn w-full md:w-48 bg-primary border-black hover:text-black/70 hover:bg-primary hover:border-black  rounded-none "
+                  onClick={() => window.location.reload()}
+                >
+                  reload
                 </button>
               </div>
             </div>
