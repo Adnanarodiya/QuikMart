@@ -65,7 +65,7 @@ export function CartPop({ isCart, cart, handleClicked }: Props) {
                 >
                   <div>
                     <img
-                      className="  object-cover"
+                      className="w-20 object-cover"
                       src={
                         item.product?.img ??
                         "https://nayemdevs.com/wp-content/uploads/2020/03/default-product-image.png"
@@ -73,8 +73,8 @@ export function CartPop({ isCart, cart, handleClicked }: Props) {
                       alt=""
                     />
                   </div>
-                  <div className="w-4/5 ml-4">
-                    <p className="font-bold  truncate mr-4">
+                  <div className="w-4/5 ml-4 text-start">
+                    <p className="font-bold top-10  truncate mr-4">
                       {item.product?.title}
                     </p>
                     <div className="flex gap-4">
