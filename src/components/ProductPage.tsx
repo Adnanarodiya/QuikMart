@@ -1,4 +1,4 @@
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate, useRevalidator } from "react-router-dom";
 import { useUser } from "./lib/helper/useUser";
 import { supabase } from "./lib/helper/supabaseClient";
 import toast from "react-hot-toast";
@@ -15,6 +15,8 @@ export default function ProductPage() {
   const user = useUser();
   const product = useLoaderData() as Product;
   const [quantity, setQuantity] = useState(1);
+  const navigate = useNavigate();
+
   async function addToCart() {
     if (!user) return;
     const { data: cartProduct } = await supabase
@@ -97,10 +99,8 @@ export default function ProductPage() {
                       ) as HTMLDialogElement;
                       modal.showModal();
                     } else {
-                      {
-                        addToCart();
-                        // refresh;
-                      }
+                      addToCart();
+                      navigate(".", { state: { refresh: true } });
                     }
                   }}
                 >
@@ -120,12 +120,6 @@ export default function ProductPage() {
                   }}
                 >
                   Buy it Now
-                </button>
-                <button
-                  className="btn w-full md:w-48 bg-primary border-black hover:text-black/70 hover:bg-primary hover:border-black  rounded-none "
-                  onClick={() => window.location.reload()}
-                >
-                  reload
                 </button>
               </div>
             </div>

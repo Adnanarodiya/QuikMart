@@ -19,6 +19,7 @@ import Jewelry from "./components/pages/Jewelry.tsx";
 import Electronics from "./components/pages/Electronics.tsx";
 import { supabase } from "./components/lib/helper/supabaseClient.ts";
 import NotFound from "./NotFound.tsx";
+import { QueryData } from "@supabase/supabase-js";
 
 async function fetchAllProds() {
   const { data, error } = await supabase
@@ -79,9 +80,37 @@ async function fetchProduct({ params }: { params: Params<string> }) {
   return data;
 }
 
+// TODO: Extract this into a queries.ts file
+const cartQuery = supabase.from("cart").select(
+  `
+    id,
+    user_id,
+    quantity,
+    product (
+      title,
+      mrp,
+      img
+    )
+  `
+);
+export type CartItems = QueryData<typeof cartQuery>;
+
+async function fetchCart() {
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+  if (!user) throw new Response("No user", { status: 400 });
+
+  const { data, error } = await cartQuery.eq("user_id", user.id);
+
+  if (error) throw new Response("Not Found", { status: 404 });
+
+  return data;
+}
+
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path="/" element={<Layout />}>
+    <Route path="/" element={<Layout />} loader={fetchCart}>
       <Route path="/" element={<Home />} loader={fetchAllProds} />
       <Route path="/about" element={<About />} />
 

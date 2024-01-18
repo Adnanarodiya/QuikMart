@@ -1,11 +1,11 @@
 import { useEffect } from "react";
 import { createPortal } from "react-dom";
-import { Cart } from "./lib/helper/useCartItems";
+import { CartItems } from "./lib/helper/useCartItems";
 
 interface Props {
   isCart: boolean;
-  cart: Cart[];
-  handleClicked: () => void;
+  cart: CartItems;
+  handleClicked: VoidFunction;
 }
 
 export function CartPop({ isCart, cart, handleClicked }: Props) {
