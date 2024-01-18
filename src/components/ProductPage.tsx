@@ -1,4 +1,4 @@
-import { useLoaderData, useNavigate, useRevalidator } from "react-router-dom";
+import { useLoaderData, useRevalidator } from "react-router-dom";
 import { useUser } from "./lib/helper/useUser";
 import { supabase } from "./lib/helper/supabaseClient";
 import toast from "react-hot-toast";
@@ -15,7 +15,7 @@ export default function ProductPage() {
   const user = useUser();
   const product = useLoaderData() as Product;
   const [quantity, setQuantity] = useState(1);
-  const navigate = useNavigate();
+  const revalidator = useRevalidator();
 
   async function addToCart() {
     if (!user) return;
@@ -33,6 +33,9 @@ export default function ProductPage() {
         })
         .eq("product_id", product.id)
         .eq("user_id", user.id);
+
+      revalidator.revalidate();
+
       if (error) {
         toast.error("something went wrong pls try again.");
         return;
@@ -50,6 +53,9 @@ export default function ProductPage() {
       })
       .eq("product_id", product.id)
       .eq("user_id", user.id);
+
+    revalidator.revalidate();
+
     if (error) {
       toast.error("something went wrong pls try again.");
       return;
@@ -100,7 +106,6 @@ export default function ProductPage() {
                       modal.showModal();
                     } else {
                       addToCart();
-                      navigate(".", { state: { refresh: true } });
                     }
                   }}
                 >
