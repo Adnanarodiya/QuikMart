@@ -5,10 +5,35 @@ import { useState } from "react";
 
 import { CartPop } from "./cart";
 import SideBar from "./sideBar";
-import { CartItems } from "../main";
+import { useQuery } from "@tanstack/react-query";
+import { supabase } from "./lib/helper/supabaseClient";
+import { QueryData } from "@supabase/supabase-js";
 
-export default function Header({ cart }: { cart: CartItems }) {
+const cartQuery = supabase.from("cart").select(
+  `
+    id,
+    user_id,
+    quantity,
+    product (
+      title,
+      mrp,
+      img
+    )
+  `
+);
+export type CartItems = QueryData<typeof cartQuery>;
+
+export default function Header() {
   const user = useUser();
+  const { data: cart } = useQuery({
+    queryKey: ["cart", user?.id],
+    async queryFn({ queryKey: [, uid] }) {
+      if (!uid) throw new Error();
+      const { data, error } = await cartQuery.eq("user_id", uid);
+      if (error) throw error;
+      return data;
+    },
+  });
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
   const [isCart, setIsCart] = useState(false);
@@ -77,7 +102,7 @@ export default function Header({ cart }: { cart: CartItems }) {
                 />
               </svg>
               <span className="badge badge-sm indicator-item">
-                {cart.reduce((acc, item) => {
+                {cart?.reduce((acc, item) => {
                   return acc + item.quantity!;
                 }, 0)}
               </span>
@@ -85,7 +110,7 @@ export default function Header({ cart }: { cart: CartItems }) {
           </div>
           {isCart && (
             <CartPop
-              cart={cart}
+              cart={cart ?? []}
               handleClicked={handleClicked}
               isCart={isCart}
             />

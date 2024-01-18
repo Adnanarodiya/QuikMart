@@ -20,15 +20,8 @@ import Electronics from "./components/pages/Electronics.tsx";
 import { supabase } from "./components/lib/helper/supabaseClient.ts";
 import NotFound from "./NotFound.tsx";
 import { QueryData } from "@supabase/supabase-js";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
-async function fetchAllProds() {
-  const { data, error } = await supabase
-    .from("product")
-    .select("id, mrp, title,category,img");
-
-  if (error) throw error;
-  return data;
-}
 async function fetchMensClothing() {
   const { data, error } = await supabase
     .from("product")
@@ -111,7 +104,7 @@ async function fetchCart() {
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<Layout />} loader={fetchCart}>
-      <Route path="/" element={<Home />} loader={fetchAllProds} />
+      <Route path="/" element={<Home />} />
       <Route path="/about" element={<About />} />
 
       <Route path="/profile" element={<Profile />} />
@@ -141,9 +134,12 @@ const router = createBrowserRouter(
     </Route>
   )
 );
+const queryClient = new QueryClient();
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
-  <React.StrictMode>
-    <RouterProvider router={router} />
-  </React.StrictMode>
+  <QueryClientProvider client={queryClient}>
+    <React.StrictMode>
+      <RouterProvider router={router} />
+    </React.StrictMode>
+  </QueryClientProvider>
 );

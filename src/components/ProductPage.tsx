@@ -3,6 +3,7 @@ import { useUser } from "./lib/helper/useUser";
 import { supabase } from "./lib/helper/supabaseClient";
 import toast from "react-hot-toast";
 import { useState } from "react";
+import { useQueryClient } from "@tanstack/react-query";
 
 interface Product {
   id: number;
@@ -15,7 +16,7 @@ export default function ProductPage() {
   const user = useUser();
   const product = useLoaderData() as Product;
   const [quantity, setQuantity] = useState(1);
-  const revalidator = useRevalidator();
+  const queryClient = useQueryClient();
 
   async function addToCart() {
     if (!user) return;
@@ -34,7 +35,7 @@ export default function ProductPage() {
         .eq("product_id", product.id)
         .eq("user_id", user.id);
 
-      revalidator.revalidate();
+      queryClient.invalidateQueries({ queryKey: ["cart", user.id] });
 
       if (error) {
         toast.error("something went wrong pls try again.");
@@ -54,7 +55,7 @@ export default function ProductPage() {
       .eq("product_id", product.id)
       .eq("user_id", user.id);
 
-    revalidator.revalidate();
+    queryClient.invalidateQueries({ queryKey: ["cart", user.id] });
 
     if (error) {
       toast.error("something went wrong pls try again.");
