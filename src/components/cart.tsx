@@ -23,7 +23,7 @@ export function CartPop({ isCart, cart, handleClicked }: Props) {
   const formatter = new Intl.NumberFormat("en-In");
 
   return createPortal(
-    <div className="fixed top-0 right-0 h-screen w-full md:w-96 bg-white backdrop-blur-3xl border-2 z-10 overflow-auto">
+    <div className="fixed top-0 right-0 h-screen w-full md:w-96 bg-white backdrop-blur-3xl border-2 z-10 ">
       <div className="flex justify-between items-center p-2 relative ">
         <div>
           <h1 className="text-xl font-bold">Cart </h1>
@@ -50,88 +50,92 @@ export function CartPop({ isCart, cart, handleClicked }: Props) {
           </svg>
         </div>
       </div>
-      <ul
-        tabIndex={0}
-        className="  text-base leading-9 w-full "
-        onClick={handleClicked}
-      >
-        {cart.length > 0 ? (
-          <div className="">
-            {cart.map((item) => (
-              <div key={item.id}>
-                <div
-                  className="flex border-b-2 w-11/12 mx-auto text-center items-center
+      <div className="overflow-auto h-[calc(100%-11rem)]">
+        <ul
+          tabIndex={0}
+          className="  text-base leading-9 w-full "
+          onClick={handleClicked}
+        >
+          {cart.length > 0 ? (
+            <div className="">
+              {cart.map((item) => (
+                <div key={item.id}>
+                  <div
+                    className="flex border-b-2 w-11/12 mx-auto text-center items-center
                   justify-center mb-4  "
-                >
-                  <div>
-                    <img
-                      className="w-20 h-20 object-contain"
-                      src={
-                        item.product?.img ??
-                        "https://nayemdevs.com/wp-content/uploads/2020/03/default-product-image.png"
-                      }
-                      alt=""
-                    />
-                  </div>
-                  <div className="w-4/5 ml-4 text-start">
-                    <p className="font-bold top-10  truncate mr-4">
-                      {item.product?.title}
-                    </p>
-                    <div className="flex gap-4">
-                      <p className="italic">
-                        Mrp:- ₹ {formatter.format(item.product!.mrp!)}
+                  >
+                    <div>
+                      <img
+                        className="w-20 h-20 object-contain"
+                        src={
+                          item.product?.img ??
+                          "https://nayemdevs.com/wp-content/uploads/2020/03/default-product-image.png"
+                        }
+                        alt=""
+                      />
+                    </div>
+                    <div className="w-4/5 ml-4 text-start">
+                      <p className="font-bold top-10  truncate mr-4">
+                        {item.product?.title}
                       </p>
-                      <p>Quantity :- {item.quantity}</p>
+                      <div className="flex gap-4">
+                        <p className="italic">
+                          Mrp:- ₹ {formatter.format(item.product!.mrp!)}
+                        </p>
+                        <p>Quantity :- {item.quantity}</p>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            ))}
-            <div className="bottom-0 fixed w-full bg-white">
-              <div className="mx-4 flex justify-between">
-                <div className="font-semibold">Sub-Total</div>
-                <div>
-                  ₹{" "}
-                  {formatter.format(
-                    cart.reduce((acc, item) => {
-                      return acc + item.product!.mrp! * item.quantity!;
-                    }, 0)
-                  )}
+              ))}
+              <div className="bottom-0 fixed w-full bg-white">
+                <div className="mx-4 flex justify-between">
+                  <div className="font-semibold">Sub-Total</div>
+                  <div>
+                    ₹{" "}
+                    {formatter.format(
+                      cart.reduce((acc, item) => {
+                        return acc + item.product!.mrp! * item.quantity!;
+                      }, 0)
+                    )}
+                  </div>
+                </div>
+
+                <div className="m-4">
+                  <button className="btn bg-neutral hover:bg-neutral/80 text-primary w-full rounded-none ">
+                    Checkout
+                  </button>
                 </div>
               </div>
-
-              <div className="m-4">
-                <button className="btn bg-neutral hover:bg-neutral/80 text-primary w-full rounded-none ">
-                  Checkout
-                </button>
-              </div>
             </div>
-          </div>
-        ) : (
-          <div>
-            <p className="m-4 text-lg italic">your cart is currently empty.</p>
-            <div className="bottom-0 fixed w-full">
-              <div className=" m-4  flex justify-between">
-                <div className="font-semibold">Sub-Total</div>
-                <div>
-                  ₹{" "}
-                  {formatter.format(
-                    cart.reduce((acc, item) => {
-                      return acc + item.product!.mrp! * item.quantity!;
-                    }, 0)
-                  )}
+          ) : (
+            <div>
+              <p className="m-4 text-lg italic">
+                your cart is currently empty.
+              </p>
+              <div className="bottom-0 fixed w-full">
+                <div className=" m-4  flex justify-between">
+                  <div className="font-semibold">Sub-Total</div>
+                  <div>
+                    ₹{" "}
+                    {formatter.format(
+                      cart.reduce((acc, item) => {
+                        return acc + item.product!.mrp! * item.quantity!;
+                      }, 0)
+                    )}
+                  </div>
+                </div>
+
+                <div className="m-4">
+                  <button className=" bg-neutral/50 hover:bg-neutral/50 cursor-not-allowed text-primary w-full rounded-none ">
+                    Checkout
+                  </button>
                 </div>
               </div>
-
-              <div className="m-4">
-                <button className=" bg-neutral/50 hover:bg-neutral/50 cursor-not-allowed text-primary w-full rounded-none ">
-                  Checkout
-                </button>
-              </div>
             </div>
-          </div>
-        )}
-      </ul>
+          )}
+        </ul>
+      </div>
     </div>,
     document.body
   );
