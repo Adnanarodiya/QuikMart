@@ -71,7 +71,7 @@ export function CartPop({ isCart, cart, handleClicked }: Props) {
         <ul
           tabIndex={0}
           className="  text-base leading-9 w-full "
-          onClick={handleClicked}
+          // onClick={handleClicked}
         >
           {cart.length > 0 ? (
             <div className="flex flex-col gap-3">
