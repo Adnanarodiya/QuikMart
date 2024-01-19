@@ -56,7 +56,7 @@ export function CartPop({ isCart, cart, handleClicked }: Props) {
         onClick={handleClicked}
       >
         {cart.length > 0 ? (
-          <div>
+          <div className="">
             {cart.map((item) => (
               <div key={item.id}>
                 <div
@@ -65,7 +65,7 @@ export function CartPop({ isCart, cart, handleClicked }: Props) {
                 >
                   <div>
                     <img
-                      className="w-20 object-cover"
+                      className="w-20 h-20 object-contain"
                       src={
                         item.product?.img ??
                         "https://nayemdevs.com/wp-content/uploads/2020/03/default-product-image.png"
@@ -87,18 +87,48 @@ export function CartPop({ isCart, cart, handleClicked }: Props) {
                 </div>
               </div>
             ))}
-            <div className="m-8">
-              sub total:- ₹{" "}
-              {formatter.format(
-                cart.reduce((acc, item) => {
-                  return acc + item.product!.mrp! * item.quantity!;
-                }, 0)
-              )}
+            <div className="bottom-0 fixed w-full bg-white">
+              <div className="mx-4 flex justify-between">
+                <div className="font-semibold">Sub-Total</div>
+                <div>
+                  ₹{" "}
+                  {formatter.format(
+                    cart.reduce((acc, item) => {
+                      return acc + item.product!.mrp! * item.quantity!;
+                    }, 0)
+                  )}
+                </div>
+              </div>
+
+              <div className="m-4">
+                <button className="btn bg-neutral hover:bg-neutral/80 text-primary w-full rounded-none ">
+                  Checkout
+                </button>
+              </div>
             </div>
           </div>
         ) : (
-          <div className="m-6">
-            <p>your cart is currently empty.</p>
+          <div>
+            <p className="m-4 text-lg italic">your cart is currently empty.</p>
+            <div className="bottom-0 fixed w-full">
+              <div className=" m-4  flex justify-between">
+                <div className="font-semibold">Sub-Total</div>
+                <div>
+                  ₹{" "}
+                  {formatter.format(
+                    cart.reduce((acc, item) => {
+                      return acc + item.product!.mrp! * item.quantity!;
+                    }, 0)
+                  )}
+                </div>
+              </div>
+
+              <div className="m-4">
+                <button className=" bg-neutral/50 hover:bg-neutral/50 cursor-not-allowed text-primary w-full rounded-none ">
+                  Checkout
+                </button>
+              </div>
+            </div>
           </div>
         )}
       </ul>
