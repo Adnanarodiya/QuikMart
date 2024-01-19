@@ -1,4 +1,4 @@
-import { useLoaderData, useRevalidator } from "react-router-dom";
+import { useLoaderData } from "react-router-dom";
 import { useUser } from "./lib/helper/useUser";
 import { supabase } from "./lib/helper/supabaseClient";
 import toast from "react-hot-toast";
