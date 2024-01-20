@@ -4,6 +4,7 @@ import { supabase } from "./lib/helper/supabaseClient";
 import toast from "react-hot-toast";
 import { useState } from "react";
 import { useQueryClient } from "@tanstack/react-query";
+// import { ArrowLeftCircle } from "lucide-react";
 
 interface Product {
   id: number;
@@ -66,10 +67,20 @@ export default function ProductPage() {
   }
   // const refresh = () => window.location.reload(false);
 
+  // const navigate = useNavigate();
   return (
     <>
       <div className="container">
         <div className="flex gap-6 my-20 flex-col md:flex-row">
+          {/* <div>
+            <ArrowLeftCircle
+              onClick={() => navigate(-1)}
+              size={40}
+              className="hover:text-black/60 hover:cursor-pointer
+              hover:scale-110 transform transition-all duration-700 ease-in-out
+              "
+            />
+          </div> */}
           <div className="w-full md:w-2/5 flex justify-center">
             <img
               className="w-3/5 object-contain h-72"
