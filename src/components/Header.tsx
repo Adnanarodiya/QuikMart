@@ -102,6 +102,8 @@ export default function Header() {
                 />
               </svg>
               <span className="badge badge-sm indicator-item">
+                {!user && "0"}
+
                 {cart?.reduce((acc, item) => {
                   return acc + item.quantity!;
                 }, 0)}
