@@ -92,7 +92,7 @@ async function fetchCart() {
   const {
     data: { user },
   } = await supabase.auth.getUser();
-  if (!user) throw new Response("No user", { status: 400 });
+  if (!user) return [];
 
   const { data, error } = await cartQuery.eq("user_id", user.id);
 

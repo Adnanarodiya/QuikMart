@@ -46,7 +46,6 @@ export default function SignUp() {
 
   return (
     <>
-      {/* Open the modal using document.getElementById('ID').showModal() method */}
       <button
         className=" "
         onClick={() => {
