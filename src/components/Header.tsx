@@ -150,7 +150,10 @@ export default function Header() {
             </ul>
           </div>
         ) : (
-          <a onClick={() => navigate("/")}>
+          <a
+            className="btn bg-black text-white hover:bg-black/80"
+            onClick={() => navigate("/")}
+          >
             <SignUp />
           </a>
         )}

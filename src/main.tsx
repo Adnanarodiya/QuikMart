@@ -21,6 +21,7 @@ import { supabase } from "./components/lib/helper/supabaseClient.ts";
 import NotFound from "./NotFound.tsx";
 import { QueryData } from "@supabase/supabase-js";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import BuyItNow from "./components/BuyItNow.tsx";
 
 async function fetchMensClothing() {
   const { data, error } = await supabase
@@ -130,6 +131,7 @@ const router = createBrowserRouter(
         element={<Electronics />}
         loader={fetchElectronics}
       />
+      <Route path="/butitnow" element={<BuyItNow />} />
       <Route path="*" element={<NotFound />} />
     </Route>
   )

@@ -4,6 +4,7 @@ import { supabase } from "./lib/helper/supabaseClient";
 import toast from "react-hot-toast";
 import { useState } from "react";
 import { useQueryClient } from "@tanstack/react-query";
+import BuyItNow from "./BuyItNow";
 // import { ArrowLeftCircle } from "lucide-react";
 
 interface Product {
@@ -132,7 +133,7 @@ export default function ProductPage() {
                       ) as HTMLDialogElement;
                       modal.showModal();
                     } else {
-                      toast.success("Product Buy succesfully");
+                      <BuyItNow />;
                     }
                   }}
                 >

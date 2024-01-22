@@ -66,8 +66,8 @@ export default function SignUp() {
         className="modal backdrop-saturate-200 backdrop-blur-xl bg-opacity-80"
       >
         <div className="modal-box">
-          <h3 className="font-bold text-lg">Create your Account</h3>
-          <p className="py-4">to continue to QuikMart</p>
+          <h3 className="font-bold text-lg text-black">Create your Account</h3>
+          <p className="py-4 text-black">to continue to QuikMart</p>
           <button
             className="btn bg-neutral hover:bg-neutral/80 text-primary w-full mb-4"
             onClick={user ? logout : () => login("github")}
