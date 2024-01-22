@@ -4,7 +4,7 @@ import { supabase } from "./lib/helper/supabaseClient";
 
 export default function Home() {
   const { data: products, isLoading } = useQuery({
-    queryKey: ["all_prods"],
+    queryKey: ["all_prods"], //kuch bhi name de sakte ho
     async queryFn() {
       const { data, error } = await supabase
         .from("product")

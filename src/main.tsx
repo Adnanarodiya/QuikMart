@@ -23,24 +23,15 @@ import { QueryData } from "@supabase/supabase-js";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import BuyItNow from "./components/BuyItNow.tsx";
 
-async function fetchMensClothing() {
-  const { data, error } = await supabase
-    .from("product")
-    .select("id, mrp, title,category,img")
-    .eq("category", "Men's Clothing");
+// async function fetchJewelry() {
+//   const { data, error } = await supabase
+//     .from("product")
+//     .select("id, mrp, title,category,img")
+//     .eq("category", "jewelry");
 
-  if (error) throw error;
-  return data;
-}
-async function fetchJewelry() {
-  const { data, error } = await supabase
-    .from("product")
-    .select("id, mrp, title,category,img")
-    .eq("category", "jewelry");
-
-  if (error) throw error;
-  return data;
-}
+//   if (error) throw error;
+//   return data;
+// }
 // eslint-disable-next-line react-refresh/only-export-components
 async function fetchWomenCloth() {
   const { data, error } = await supabase
@@ -115,17 +106,13 @@ const router = createBrowserRouter(
         loader={fetchProduct}
         errorElement={<NotFound />}
       />
-      <Route
-        path="/mensclothing"
-        element={<MensClothing />}
-        loader={fetchMensClothing}
-      />
+      <Route path="/mensclothing" element={<MensClothing />} />
       <Route
         path="/womensclothing"
         element={<WomensClothing />}
         loader={fetchWomenCloth}
       />
-      <Route path="/jewelary" element={<Jewelry />} loader={fetchJewelry} />
+      <Route path="/jewelary" element={<Jewelry />} />
       <Route
         path="/electronics"
         element={<Electronics />}
