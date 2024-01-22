@@ -1,11 +1,9 @@
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import { useUser } from "./lib/helper/useUser";
 import { supabase } from "./lib/helper/supabaseClient";
 import toast from "react-hot-toast";
 import { useState } from "react";
 import { useQueryClient } from "@tanstack/react-query";
-import BuyItNow from "./BuyItNow";
-// import { ArrowLeftCircle } from "lucide-react";
 
 interface Product {
   id: number;
@@ -132,12 +130,10 @@ export default function ProductPage() {
                         "my_modal_2"
                       ) as HTMLDialogElement;
                       modal.showModal();
-                    } else {
-                      <BuyItNow />;
                     }
                   }}
                 >
-                  Buy it Now
+                  <Link to={"/buyitnow"}> Buy it Now</Link>
                 </button>
               </div>
             </div>

@@ -131,7 +131,7 @@ const router = createBrowserRouter(
         element={<Electronics />}
         loader={fetchElectronics}
       />
-      <Route path="/butitnow" element={<BuyItNow />} />
+      <Route path="/buyitnow" element={<BuyItNow />} />
       <Route path="*" element={<NotFound />} />
     </Route>
   )
