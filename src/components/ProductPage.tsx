@@ -166,7 +166,7 @@
 //     </>
 //   );
 // }
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useUser } from "./lib/helper/useUser";
 import { supabase } from "./lib/helper/supabaseClient";
 import toast from "react-hot-toast";
@@ -178,14 +178,17 @@ export default function ProductPage() {
   const [quantity, setQuantity] = useState(1);
   const queryClient = useQueryClient();
 
+  const params = useParams<{ productId: string }>();
+  if (!params.productId) throw new Response("Not Found", { status: 404 });
+
   const { data: product, isLoading } = useQuery({
-    queryKey: ["single_product"],
+    queryKey: ["single_product", params.productId],
 
     async queryFn() {
       const { data, error } = await supabase
         .from("product")
         .select("id, mrp, title,category,img")
-        .eq("id", 1)
+        .eq("id", +params.productId!)
         .single();
 
       if (error) throw error;
