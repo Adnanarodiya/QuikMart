@@ -72,6 +72,53 @@ export interface Database {
         }
         Relationships: []
       }
+      users: {
+        Row: {
+          address: string | null
+          city: string | null
+          country: string | null
+          created_at: string
+          firstName: string | null
+          id: string
+          lastName: string | null
+          phoneNo: string | null
+          pincode: number | null
+          state: string | null
+        }
+        Insert: {
+          address?: string | null
+          city?: string | null
+          country?: string | null
+          created_at?: string
+          firstName?: string | null
+          id: string
+          lastName?: string | null
+          phoneNo?: string | null
+          pincode?: number | null
+          state?: string | null
+        }
+        Update: {
+          address?: string | null
+          city?: string | null
+          country?: string | null
+          created_at?: string
+          firstName?: string | null
+          id?: string
+          lastName?: string | null
+          phoneNo?: string | null
+          pincode?: number | null
+          state?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "users_id_fkey"
+            columns: ["id"]
+            isOneToOne: true
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          }
+        ]
+      }
     }
     Views: {
       [_ in never]: never

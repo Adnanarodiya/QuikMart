@@ -3,15 +3,7 @@ import ProductCard from "../productCard";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "../lib/helper/supabaseClient";
 
-// interface Product {
-//   id: number;
-//   title: string;
-//   mrp: number;
-//   img: string;
-// }
-
 export default function Jewelry() {
-  // const products = useLoaderData() as Product[];
   const { data: products, isLoading } = useQuery({
     queryKey: ["jewelry_clothing"],
     async queryFn() {

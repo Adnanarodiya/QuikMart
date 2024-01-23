@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import {
-  Params,
+  // Params,
   Route,
   RouterProvider,
   createBrowserRouter,
@@ -23,47 +23,19 @@ import { QueryData } from "@supabase/supabase-js";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import BuyItNow from "./components/BuyItNow.tsx";
 
-// async function fetchJewelry() {
+// async function fetchProduct({ params }: { params: Params<string> }) {
+//   if (!params.productId) throw new Response("Not Found", { status: 404 });
+
 //   const { data, error } = await supabase
 //     .from("product")
 //     .select("id, mrp, title,category,img")
-//     .eq("category", "jewelry");
+//     .eq("id", +params.productId)
+//     .single();
 
-//   if (error) throw error;
+//   if (error) throw new Response("Not Found", { status: 404 });
+
 //   return data;
 // }
-// eslint-disable-next-line react-refresh/only-export-components
-async function fetchWomenCloth() {
-  const { data, error } = await supabase
-    .from("product")
-    .select("id, mrp, title,category,img")
-    .eq("category", "women's clothing");
-
-  if (error) throw error;
-  return data;
-}
-async function fetchElectronics() {
-  const { data, error } = await supabase
-    .from("product")
-    .select("id, mrp, title,category,img")
-    .eq("category", "electronics");
-
-  if (error) throw error;
-  return data;
-}
-async function fetchProduct({ params }: { params: Params<string> }) {
-  if (!params.productId) throw new Response("Not Found", { status: 404 });
-
-  const { data, error } = await supabase
-    .from("product")
-    .select("id, mrp, title,category,img")
-    .eq("id", +params.productId)
-    .single();
-
-  if (error) throw new Response("Not Found", { status: 404 });
-
-  return data;
-}
 
 // TODO: Extract this into a queries.ts file
 const cartQuery = supabase.from("cart").select(
@@ -103,21 +75,13 @@ const router = createBrowserRouter(
       <Route
         path="/product/:productId"
         element={<ProductPage />}
-        loader={fetchProduct}
+        // loader={fetchProduct}
         errorElement={<NotFound />}
       />
       <Route path="/mensclothing" element={<MensClothing />} />
-      <Route
-        path="/womensclothing"
-        element={<WomensClothing />}
-        loader={fetchWomenCloth}
-      />
+      <Route path="/womensclothing" element={<WomensClothing />} />
       <Route path="/jewelary" element={<Jewelry />} />
-      <Route
-        path="/electronics"
-        element={<Electronics />}
-        loader={fetchElectronics}
-      />
+      <Route path="/electronics" element={<Electronics />} />
       <Route path="/buyitnow" element={<BuyItNow />} />
       <Route path="*" element={<NotFound />} />
     </Route>
