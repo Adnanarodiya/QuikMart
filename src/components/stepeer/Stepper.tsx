@@ -37,12 +37,10 @@ const Stepper = () => {
               <button
                 className="btn"
                 onClick={() => {
-                  currentStep === steps.length
-                    ? setComplete(true)
-                    : setCurrentStep((prev) => prev - 1);
+                  setCurrentStep((prev) => prev - 1);
                 }}
               >
-                {currentStep === steps.length ? "Finish" : "prev"}
+                Previous
               </button>
             )}
 

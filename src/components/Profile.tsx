@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useUser } from "./lib/helper/useUser";
+import { supabase } from "./lib/helper/supabaseClient";
 
 const countries = {
   India: {
@@ -34,6 +35,17 @@ export default function Profile() {
   const handleCityChange = (event) => {
     setCity(event.target.value);
   };
+
+  async function updateUserInfo() {
+    const { error } = await supabase
+      .from("users")
+      .update({
+        firstName: "John",
+      })
+      .eq("id", user!.id);
+
+    console.log(error);
+  }
 
   return (
     <>
@@ -179,7 +191,10 @@ export default function Profile() {
                   className="input input-bordered  focus:outline-none w-full [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                 />
               </label>
-              <button className="mt-5 rounded-lg btn w-full md:w-48 mb-4 bg-black border-black hover:bg-black/80 text-primary  ">
+              <button
+                className="mt-5 rounded-lg btn w-full md:w-48 mb-4 bg-black border-black hover:bg-black/80 text-primary  "
+                onClick={updateUserInfo}
+              >
                 Update
               </button>
             </form>
