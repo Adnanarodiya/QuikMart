@@ -1,4 +1,3 @@
-// import { useLoaderData } from "react-router-dom";
 import ProductCard from "../productCard";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "../lib/helper/supabaseClient";

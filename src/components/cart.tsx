@@ -13,20 +13,7 @@ interface Props {
   handleClicked: VoidFunction;
 }
 
-// const count = {
-//   1: "1",
-//   2: "2",
-//   3: "3",
-//   4: "4",
-// };
-
 export function CartPop({ isCart, cart, handleClicked }: Props) {
-  // const [country, setCountry] = useState("");
-
-  // const handleCountryChange = (event) => {
-  //   setCountry(event.target.value);
-  // };
-
   useEffect(() => {
     if (isCart) {
       document.body.style.overflow = "hidden";
@@ -119,18 +106,6 @@ export function CartPop({ isCart, cart, handleClicked }: Props) {
                           className="hover:text-red-600 hover:delay-200 ease-in-out"
                         />
                       </div>
-                      {/* <select
-                        className="input input-bordered  focus:outline-none w-full"
-                        value={country}
-                        onChange={handleCountryChange}
-                      >
-                        <option value="">{item.quantity}</option>
-                        {Object.keys(count).map((country) => (
-                          <option key={country} value={country}>
-                            {country}
-                          </option>
-                        ))}
-                      </select> */}
                     </div>
                   </div>
                 </div>
