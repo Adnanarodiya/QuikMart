@@ -2,7 +2,7 @@
 import { useUser } from "./lib/helper/useUser";
 import { supabase } from "./lib/helper/supabaseClient";
 import { useQuery } from "@tanstack/react-query";
-import ProfileForm from "./profileForm";
+import ProfileForm from "./ProfileForm";
 
 // const countries = {
 //   India: {
