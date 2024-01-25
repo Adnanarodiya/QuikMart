@@ -32,7 +32,11 @@ const Stepper = () => {
               </div>
             )}
           </div>
-          <div className="flex justify-between w-4/5 items-center mx-auto">
+          <div
+            className={`${currentStep === 1 && "justify-end"} ${
+              currentStep > 1 && "justify-between"
+            } flex w-4/5 items-center mx-auto`}
+          >
             {currentStep > 1 && (
               <button
                 className="btn"
@@ -45,7 +49,7 @@ const Stepper = () => {
             )}
 
             <button
-              className="btn"
+              className="btn float-left"
               onClick={() => {
                 currentStep === steps.length
                   ? setComplete(true)
