@@ -20,6 +20,11 @@ export default function Profile() {
   const [country, setCountry] = useState("");
   const [state, setState] = useState("");
   const [city, setCity] = useState("");
+  const [pincode, setPincode] = useState("");
+  const [phoneNo, setphoneNo] = useState("");
+  const [address, setAddress] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
 
   const handleCountryChange = (event) => {
     setCountry(event.target.value);
@@ -40,7 +45,14 @@ export default function Profile() {
     const { error } = await supabase
       .from("users")
       .update({
-        firstName: "John",
+        firstName,
+        lastName,
+        country,
+        state,
+        city,
+        pincode,
+        phoneNo,
+        address,
       })
       .eq("id", user!.id);
 
@@ -86,8 +98,10 @@ export default function Profile() {
                   </div>
                   <input
                     type="text"
-                    placeholder="Type here"
+                    placeholder="Enter your first name"
                     className="input input-bordered  focus:outline-none w-full"
+                    value={firstName}
+                    onChange={(e) => setFirstName(e.target.value)}
                   />
                 </label>
                 <label className="form-control w-full">
@@ -96,8 +110,10 @@ export default function Profile() {
                   </div>
                   <input
                     type="text"
-                    placeholder="Type here"
-                    className="input input-bordered  focus:outline-none w-full "
+                    placeholder="Enter your last name"
+                    className="input input-bordered focus:outline-none w-full"
+                    value={lastName}
+                    onChange={(e) => setLastName(e.target.value)}
                   />
                 </label>
               </div>
@@ -107,8 +123,10 @@ export default function Profile() {
                 </div>
                 <textarea
                   className="textarea textarea-bordered h-24  focus:outline-none"
-                  placeholder="Bio"
+                  placeholder="Enter your address"
                   aria-colindex={2}
+                  value={address}
+                  onChange={(e) => setAddress(e.target.value)}
                 ></textarea>
               </label>
 
@@ -173,9 +191,11 @@ export default function Profile() {
                     <span className="label-text">Pincode</span>
                   </div>
                   <input
-                    type="text"
-                    placeholder="Type here"
+                    type="number"
+                    placeholder="Enter your pincode"
                     className="input input-bordered  focus:outline-none w-full "
+                    value={pincode}
+                    onChange={(e) => setPincode(e.target.value)}
                   />
                 </label>
               </div>
@@ -187,8 +207,10 @@ export default function Profile() {
                   type="number"
                   inputMode="numeric"
                   pattern="/d*"
-                  placeholder="Type here"
+                  placeholder="Enter your phone number"
                   className="input input-bordered  focus:outline-none w-full [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+                  value={phoneNo}
+                  onChange={(e) => setphoneNo(e.target.value)}
                 />
               </label>
               <button

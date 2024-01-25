@@ -82,7 +82,7 @@ export interface Database {
           id: string
           lastName: string | null
           phoneNo: string | null
-          pincode: number | null
+          pincode: string | null
           state: string | null
         }
         Insert: {
@@ -94,7 +94,7 @@ export interface Database {
           id: string
           lastName?: string | null
           phoneNo?: string | null
-          pincode?: number | null
+          pincode?: string | null
           state?: string | null
         }
         Update: {
@@ -106,7 +106,7 @@ export interface Database {
           id?: string
           lastName?: string | null
           phoneNo?: string | null
-          pincode?: number | null
+          pincode?: string | null
           state?: string | null
         }
         Relationships: [
