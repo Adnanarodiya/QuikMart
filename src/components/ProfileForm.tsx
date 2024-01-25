@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { supabase } from "./lib/helper/supabaseClient";
 import { useUser } from "./lib/helper/useUser";
+import toast from "react-hot-toast";
 const countries = {
   India: {
     Gujarat: ["Surat", "Ahmedabad", "Vadodara"],
@@ -64,7 +65,8 @@ function ProfileForm({ data: userData }: Props) {
         address,
       })
       .eq("id", user!.id);
-
+    toast.success("Profile updated succesfully");
+    window.location.reload();
     console.log(error);
   }
   return (
