@@ -22,6 +22,8 @@ import NotFound from "./NotFound.tsx";
 import { QueryData } from "@supabase/supabase-js";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import BuyItNow from "./components/BuyItNow.tsx";
+import Ssss from "./components/Ssss.tsx";
+import Cc from "./components/Cc.tsx";
 
 // async function fetchProduct({ params }: { params: Params<string> }) {
 //   if (!params.productId) throw new Response("Not Found", { status: 404 });
@@ -83,6 +85,8 @@ const router = createBrowserRouter(
       <Route path="/jewelary" element={<Jewelry />} />
       <Route path="/electronics" element={<Electronics />} />
       <Route path="/buyitnow" element={<BuyItNow />} />
+      <Route path="/success" element={<Ssss />} />
+      <Route path="/cancel" element={<Cc />} />
       <Route path="*" element={<NotFound />} />
     </Route>
   )
