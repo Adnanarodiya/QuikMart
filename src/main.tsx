@@ -25,20 +25,6 @@ import BuyItNow from "./components/BuyItNow.tsx";
 import Ssss from "./components/Ssss.tsx";
 import Cc from "./components/Cc.tsx";
 
-// async function fetchProduct({ params }: { params: Params<string> }) {
-//   if (!params.productId) throw new Response("Not Found", { status: 404 });
-
-//   const { data, error } = await supabase
-//     .from("product")
-//     .select("id, mrp, title,category,img")
-//     .eq("id", +params.productId)
-//     .single();
-
-//   if (error) throw new Response("Not Found", { status: 404 });
-
-//   return data;
-// }
-
 // TODO: Extract this into a queries.ts file
 const cartQuery = supabase.from("cart").select(
   `
@@ -77,7 +63,6 @@ const router = createBrowserRouter(
       <Route
         path="/product/:productId"
         element={<ProductPage />}
-        // loader={fetchProduct}
         errorElement={<NotFound />}
       />
       <Route path="/mensclothing" element={<MensClothing />} />

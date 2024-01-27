@@ -40,7 +40,6 @@ export function CartPop({ isCart, cart, handleClicked }: Props) {
     }
   }
 
-  //payment integration
   // payment integration
   const makePayment = async () => {
     const stripe = await loadStripe(
@@ -53,7 +52,6 @@ export function CartPop({ isCart, cart, handleClicked }: Props) {
           id: item.product!.title,
           quantity: item.quantity,
           price: item.product!.mrp,
-          img: item.product!.img,
         };
       }),
     };
@@ -109,11 +107,7 @@ export function CartPop({ isCart, cart, handleClicked }: Props) {
         </div>
       </div>
       <div className="overflow-auto h-[calc(100%-13rem)]">
-        <ul
-          tabIndex={0}
-          className="  text-base leading-9 w-full "
-          // onClick={handleClicked}
-        >
+        <ul tabIndex={0} className="  text-base leading-9 w-full ">
           {cart.length > 0 ? (
             <div className="flex flex-col gap-3">
               {cart.map((item) => (
