@@ -1,4 +1,4 @@
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useUser } from "./lib/helper/useUser";
 import { supabase } from "./lib/helper/supabaseClient";
 import toast from "react-hot-toast";
@@ -77,7 +77,9 @@ export default function ProductPage() {
     toast.success("Product added succesfully");
     console.log(data);
   }
-
+  function BuyDone() {
+    toast.success("Product bought successfully");
+  }
   return (
     <>
       <div className="container">
@@ -132,10 +134,12 @@ export default function ProductPage() {
                         "my_modal_2"
                       ) as HTMLDialogElement;
                       modal.showModal();
+                    } else {
+                      BuyDone();
                     }
                   }}
                 >
-                  <Link to={"/buyitnow"}> Buy it Now</Link>
+                  Buy it Now
                 </button>
               </div>
             </div>

@@ -2,17 +2,6 @@ import { useEffect, useState } from "react";
 import { supabase } from "./supabaseClient";
 import { QueryData } from "@supabase/supabase-js";
 
-// export type Cart = {
-//   id: number;
-//   user_id: string | null;
-//   quantity: number | null;
-//   product: {
-//     title: string | null;
-//     mrp: number | null;
-//     img: string | null;
-//   } | null;
-// };
-
 const cartQuery = supabase.from("cart").select(
   `
     id,

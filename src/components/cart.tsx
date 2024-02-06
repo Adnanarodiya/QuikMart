@@ -6,7 +6,6 @@ import { supabase } from "./lib/helper/supabaseClient";
 import toast from "react-hot-toast";
 import { useUser } from "./lib/helper/useUser";
 import { useQueryClient } from "@tanstack/react-query";
-import { loadStripe } from "@stripe/stripe-js";
 
 interface Props {
   isCart: boolean;
@@ -40,43 +39,13 @@ export function CartPop({ isCart, cart, handleClicked }: Props) {
     }
   }
 
-  // payment integration
-  const makePayment = async () => {
-    const stripe = await loadStripe(
-      "pk_test_51OcpOvSGlQB6g80oVp08NLKtBemVR4vAGFxl7xCmxd5K8605imrtoQMu7fbcM4z29ijX8MEFJugxJBjJbkk3CFx100LJSq7Pll"
-    );
-
-    const body = {
-      products: cart.map((item) => {
-        return {
-          id: item.product!.title,
-          quantity: item.quantity,
-          price: item.product!.mrp,
-        };
-      }),
-    };
-    const headers = {
-      "Content-Type": "application/json",
-    };
-    const response = await fetch(
-      "http://localhost:7000/api/create-checkout-session",
-      {
-        method: "POST",
-        headers: headers,
-        body: JSON.stringify(body),
-      }
-    );
-
-    const session = await response.json();
-
-    const result = stripe!.redirectToCheckout({
-      sessionId: session.id,
+  function BuyDone() {
+    toast.success("Product bought successfully");
+    cart.forEach(async (item) => {
+      await supabase.from("cart").delete().eq("id", item.id);
     });
-
-    if ((await result).error) {
-      console.log((await result).error);
-    }
-  };
+    queryClient.invalidateQueries({ queryKey: ["cart", user?.id] });
+  }
 
   return createPortal(
     <div className="fixed top-0 right-0 h-screen w-full md:w-96 bg-white backdrop-blur-3xl border-2 z-10 ">
@@ -161,9 +130,18 @@ export function CartPop({ isCart, cart, handleClicked }: Props) {
                 <div className="m-4">
                   <button
                     className="btn bg-neutral hover:bg-neutral/80 text-primary w-full rounded-none "
-                    onClick={makePayment}
+                    onClick={() => {
+                      if (!user) {
+                        const modal = document.getElementById(
+                          "my_modal_2"
+                        ) as HTMLDialogElement;
+                        modal.showModal();
+                      } else {
+                        BuyDone();
+                      }
+                    }}
                   >
-                    Checkout
+                    Buy it Now
                   </button>
                 </div>
               </div>

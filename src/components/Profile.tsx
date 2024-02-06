@@ -42,20 +42,6 @@ export default function Profile() {
           >
             {userData && <ProfileForm data={userData} />}
           </div>
-
-          <input
-            type="radio"
-            name="my_tabs_2"
-            role="tab"
-            className="tab"
-            aria-label="Order History"
-          />
-          <div
-            role="tabpanel"
-            className="tab-content bg-base-100 border-base-300 rounded-box p-6"
-          >
-            There is no history yet.
-          </div>
         </div>
       </div>
     </>
