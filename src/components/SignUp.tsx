@@ -68,20 +68,7 @@ export default function SignUp() {
         <div className="modal-box">
           <h3 className="font-bold text-lg text-black">Create your Account</h3>
           <p className="py-4 text-black">to continue to QuikMart</p>
-          <button
-            className="btn bg-neutral hover:bg-neutral/80 text-primary w-full mb-4"
-            onClick={user ? logout : () => login("github")}
-          >
-            <img src="img/github.png" alt="" />
-            SignUp with GitHub
-          </button>
-          <button
-            className="btn w-full mb-6 bg-neutral hover:bg-neutral/80 text-primary"
-            onClick={user ? logout : () => login("google")}
-          >
-            <img src="img/google.png" alt="" />
-            SignUp with Google
-          </button>
+
           <form
             onSubmit={(e) => {
               e.preventDefault();
