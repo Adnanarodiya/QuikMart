@@ -2,19 +2,19 @@ import { useState } from "react";
 import { supabase } from "./lib/helper/supabaseClient";
 import toast from "react-hot-toast";
 import { z } from "zod";
-import { Provider } from "@supabase/supabase-js";
+// import { Provider } from "@supabase/supabase-js";
 import { useUser } from "./lib/helper/useUser";
 
 export default function SignUp() {
   const user = useUser();
   const [email, setEmail] = useState("");
 
-  const login = async (provider: Provider) => {
-    await supabase.auth.signInWithOAuth({
-      provider,
-      options: { redirectTo: "http://localhost:5173/" },
-    });
-  };
+  // const login = async (provider: Provider) => {
+  //   await supabase.auth.signInWithOAuth({
+  //     provider,
+  //     options: { redirectTo: "http://localhost:5173/" },
+  //   });
+  // };
 
   const logout = async () => {
     supabase.auth.signOut();
