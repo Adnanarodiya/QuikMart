@@ -84,7 +84,7 @@ export default function SignUp() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="xyz@email.com"
-                className="input input-bordered w-full focus:outline-none"
+                className="input input-bordered w-full focus:outline-none text-black"
               />
             </label>
 
